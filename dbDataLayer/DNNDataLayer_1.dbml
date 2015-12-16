@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Database" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;Connect Timeout=30" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Blog_Posts" Member="Blog_Posts">
+    <Type Name="Blog_Post">
+      <Column Name="ContentItemId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BlogID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Summary" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Published" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PublishedOnDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="AllowComments" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DisplayCopyright" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Copyright" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Locale" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ViewCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastUpdatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BraftonID" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Blog_Blog_Blog_Post" Member="Blog_Blog" ThisKey="BlogID" OtherKey="BlogID" Type="Blog_Blog" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="ContentItem_Blog_Post" Member="ContentItem" ThisKey="ContentItemId" OtherKey="ContentItemID" Type="ContentItem" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Blog_Blogs" Member="Blog_Blogs">
+    <Type Name="Blog_Blog">
+      <Column Name="BlogID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ModuleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Locale" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="FullLocalization" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Published" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IncludeImagesInFeed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IncludeAuthorInFeed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Syndicated" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SyndicationEmail" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Copyright" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="MustApproveGhostPosts" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PublishAsOwner" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="EnablePingBackSend" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnablePingBackReceive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AutoApprovePingBack" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableTrackBackSend" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="EnableTrackBackReceive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AutoApproveTrackBack" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="OwnerUserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Blog_Blog_Blog_Post" Member="Blog_Posts" ThisKey="BlogID" OtherKey="BlogID" Type="Blog_Post" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ContentItems" Member="ContentItems">
+    <Type Name="ContentItem">
+      <Column Name="ContentItemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ContentTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TabID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ModuleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ContentKey" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Indexed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="StateID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ContentItem_Blog_Post" Member="Blog_Post" ThisKey="ContentItemID" OtherKey="ContentItemId" Type="Blog_Post" Cardinality="One" />
+      <Association Name="ContentItem_ContentItems_Tag" Member="ContentItems_Tags" ThisKey="ContentItemID" OtherKey="ContentItemID" Type="ContentItems_Tag" />
+      <Association Name="ContentType_ContentItem" Member="ContentType" ThisKey="ContentTypeID" OtherKey="ContentTypeID" Type="ContentType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Taxonomy_Terms" Member="Taxonomy_Terms">
+    <Type Name="Taxonomy_Term">
+      <Column Name="TermID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VocabularyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ParentTermID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(2500)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TermLeft" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TermRight" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Taxonomy_Term_Taxonomy_Term" Member="Taxonomy_Terms" ThisKey="TermID" OtherKey="ParentTermID" Type="Taxonomy_Term" />
+      <Association Name="Taxonomy_Term_Blog_Term" Member="Blog_Term" ThisKey="TermID" OtherKey="TermID" Type="Blog_Term" Cardinality="One" />
+      <Association Name="Taxonomy_Term_ContentItems_Tag" Member="ContentItems_Tags" ThisKey="TermID" OtherKey="TermID" Type="ContentItems_Tag" />
+      <Association Name="Taxonomy_Term_Taxonomy_Term" Member="Taxonomy_Term1" ThisKey="ParentTermID" OtherKey="TermID" Type="Taxonomy_Term" IsForeignKey="true" />
+      <Association Name="Taxonomy_Vocabulary_Taxonomy_Term" Member="Taxonomy_Vocabulary" ThisKey="VocabularyID" OtherKey="VocabularyID" Type="Taxonomy_Vocabulary" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Blog_Terms" Member="Blog_Terms">
+    <Type Name="Blog_Term">
+      <Column Name="TermID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ViewOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Taxonomy_Term_Blog_Term" Member="Taxonomy_Term" ThisKey="TermID" OtherKey="TermID" Type="Taxonomy_Term" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ContentItems_Tags" Member="ContentItems_Tags">
+    <Type Name="ContentItems_Tag">
+      <Column Name="ContentItemTagID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ContentItemID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TermID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ContentItem_ContentItems_Tag" Member="ContentItem" ThisKey="ContentItemID" OtherKey="ContentItemID" Type="ContentItem" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Taxonomy_Term_ContentItems_Tag" Member="Taxonomy_Term" ThisKey="TermID" OtherKey="TermID" Type="Taxonomy_Term" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Taxonomy_Vocabularies" Member="Taxonomy_Vocabularies">
+    <Type Name="Taxonomy_Vocabulary">
+      <Column Name="VocabularyID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VocabularyTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(2500)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ScopeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ScopeTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IsSystem" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Taxonomy_Vocabulary_Taxonomy_Term" Member="Taxonomy_Terms" ThisKey="VocabularyID" OtherKey="VocabularyID" Type="Taxonomy_Term" />
+      <Association Name="Taxonomy_VocabularyType_Taxonomy_Vocabulary" Member="Taxonomy_VocabularyType" ThisKey="VocabularyTypeID" OtherKey="VocabularyTypeID" Type="Taxonomy_VocabularyType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Taxonomy_VocabularyTypes" Member="Taxonomy_VocabularyTypes">
+    <Type Name="Taxonomy_VocabularyType">
+      <Column Name="VocabularyTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VocabularyType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Taxonomy_VocabularyType_Taxonomy_Vocabulary" Member="Taxonomy_Vocabularies" ThisKey="VocabularyTypeID" OtherKey="VocabularyTypeID" Type="Taxonomy_Vocabulary" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ContentTypes" Member="ContentTypes">
+    <Type Name="ContentType">
+      <Column Name="ContentTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ContentType" Member="ContentType1" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="ContentType_ContentItem" Member="ContentItems" ThisKey="ContentTypeID" OtherKey="ContentTypeID" Type="ContentItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSuperUser" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AffiliateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatePassword" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastIPAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PasswordResetToken" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PasswordResetExpiration" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LowerEmail" Type="System.String" DbType="NVarChar(256)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+</Database>

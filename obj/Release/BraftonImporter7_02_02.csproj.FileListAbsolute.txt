@@ -1,0 +1,11 @@
+E:\originalDNN\New-DNN-Importer-master\New-DNN-Importer-master\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.csprojResolveAssemblyReference.cache
+E:\dnn\bin\BraftonImporter7_02_02.dll
+E:\dnn\bin\BraftonImporter7_02_02.pdb
+E:\dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.csprojResolveAssemblyReference.cache
+E:\dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.dll
+E:\dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.pdb
+C:\websites\deryk_dnn\bin\BraftonImporter7_02_02.dll
+C:\websites\deryk_dnn\bin\BraftonImporter7_02_02.pdb
+C:\websites\deryk_dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.csprojResolveAssemblyReference.cache
+C:\websites\deryk_dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.dll
+C:\websites\deryk_dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.pdb
