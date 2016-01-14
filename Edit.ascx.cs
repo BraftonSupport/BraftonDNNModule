@@ -106,12 +106,12 @@ namespace Brafton.Modules.BraftonImporter7_02_02
             {
                 tc.CreateItem(t);
             }
-            Response.Redirect(DotNetNuke.Common.Globals.NavigateURL());
+            //Response.Redirect(DotNetNuke.Common.Globals.NavigateURL());
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect(DotNetNuke.Common.Globals.NavigateURL());
+            //Response.Redirect(DotNetNuke.Common.Globals.NavigateURL());
         }
     }
 }

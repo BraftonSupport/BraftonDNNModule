@@ -110,6 +110,8 @@ namespace BraftonView.Brafton_Importer_Clean
         protected global::System.Web.UI.WebControls.Button updateVidSettings;
 
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+
+        protected global::System.Web.UI.WebControls.Panel BraftonAdminPanel;
     }
 }
 

@@ -1,19 +1,20 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="BraftonImporter7_02_02" type="Module" version="00.00.02">
-      <friendlyName>BraftonImporter7_02_02</friendlyName>
-      <description>Brafton.com BraftonImporter7_02_02 module</description>
-      <iconFile>Images/icon_extensions.gif</iconFile>
+    <package name="BraftonImporter7_02_02" type="Module" version="00.00.04">
+      <friendlyName>Brafton Content Importer</friendlyName>
+      <description>DNN Importer for Brafton/Brafton SMB/Castleford content.  Requires the DNN Blog Module for implimentation importing each article as a new blog post.</description>
+      <iconFile>Images/BR.png</iconFile>
       <owner>
         <name>Brafton.com</name>
         <organization>Brafton.com</organization>
         <url>http://www.Brafton.com</url>
-        <email>frank.dumont@Brafton.com</email>
+        <email>deryk.king@brafton.com</email>
       </owner>
       <license src="License.txt"></license>
       <releaseNotes src="ReleaseNotes.txt"></releaseNotes>
       <dependencies>
         <dependency type="CoreVersion">07.00.02</dependency>
+        <dependency type="package">DotNetNuke.Blog</dependency>
       </dependencies>
 
       <components>
@@ -47,10 +48,12 @@
             <moduleName>BraftonImporter7_02_02</moduleName>
             <foldername>BraftonImporter7_02_02</foldername>
             <businessControllerClass>Brafton.Modules.BraftonImporter7_02_02.Components.FeatureController</businessControllerClass>
-            <supportedFeatures />
+            <supportedFeatures>
+              <supportedFeature type="Upgradeable"/>
+            </supportedFeatures>
             <moduleDefinitions>
               <moduleDefinition>
-                <friendlyName>BraftonImporter7_02_02</friendlyName>
+                <friendlyName>Brafton Content Importer</friendlyName>
                 <defaultCacheTime>0</defaultCacheTime>
                 <moduleControls>
                   <moduleControl>

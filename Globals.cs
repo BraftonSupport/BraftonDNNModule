@@ -21,8 +21,8 @@ namespace Brafton.Modules.Globals
         public static string ArtOrBlog = "unk";
         public static int IncludeVideo = 0;
         public static int IncludeUpdatedFeedContent = 0;
-        public static string VideoBaseURL = "api.video.brafton.com";
-        public static string VideoPhotoURL = "pictures.video.brafton.com";
+        public static string VideoBaseURL = "livevideo.brafton.com";
+        public static string VideoPhotoURL = "pictures.brafton.com";
         public static string VideoPublicKey = "xxxxxx";
         public static string VideoSecretKey = "xxxxxx";
         public static int? VideoFeedNumber = 0;
@@ -47,57 +47,56 @@ namespace Brafton.Modules.Globals
         public static int brafID = 0;
 
         //Variables used 
-        public static int CurrentBlog = 0;
-        public static int currentPortal = 0;
+        public static int? CurrentBlog = 0;
+        public static int? currentPortal = 0;
+        public static int Limit = 30;
+        public static int? TabID = 0;
+        public static int? Author = 1;
+        public static List<int> BraftonViewModuleId = new List<int>();
+        public static Boolean debugmode = false;
 
+        public static void AdminControls(object sender, EventArgs e)
+        {
 
+        }
             public static void PopGlobals()
 
                  {
-                     using (DNNDataLayerDataContext dnnContext = new DNNDataLayerDataContext())
+                     using (DataClasses1DataContext dnnContext = new DataClasses1DataContext())
                      {
 
                          #region Fill Globals
-                         BraftonTable pk = dnnContext.BraftonTables.FirstOrDefault(x => x.Content == "1");
+                         Brafton_table pk = dnnContext.Brafton_tables.FirstOrDefault(x => x.Content == "1");
 
                          if (pk != null)
                          {
-                             if (pk.Api != null)
-                             {
-                                 api = pk.Api;
-                             }
-                             if (pk.BaseUrl != null)
-                            {
-                                 baseUrl = pk.BaseUrl;
-                            }
-                             if (pk.DomainName != null)
-                            {
-                                 DomainName = pk.DomainName;
-                            }
-                             
-                             
-                             
-                             if (pk.VideoPublicKey != null)
-                                {
-                                 VideoPublicKey = pk.VideoPublicKey;
-                                 }
-                             if (pk.VideoSecretKey != null)
-                                {
-                                 VideoSecretKey = pk.VideoSecretKey;
-                                }
-                             if (pk.VideoFeedNumber != null)
-                                 {
-                                 VideoFeedNumber = pk.VideoFeedNumber;
-                                 VideoFeedText = pk.VideoFeedNumber.ToString();
-                                  }
-                             if (pk.VideoBaseUrl != null)
-                             {
-                                 VideoBaseURL = pk.VideoBaseUrl;
-                             }
-                             if (pk.VideoPhotoURL != null)
-                             {
-                                 VideoPhotoURL = pk.VideoPhotoURL;
-                             }
+                             api = pk.Api != null ? pk.Api : api;
+
+                             baseUrl = pk.BaseUrl != null ? pk.BaseUrl : baseUrl;
+
+                             DomainName = pk.DomainName != null ? pk.DomainName : DomainName;
+
+                             VideoPublicKey = pk.VideoPublicKey != null ? pk.VideoPublicKey : VideoPublicKey;
+
+                             VideoSecretKey = pk.VideoSecretKey != null ? pk.VideoSecretKey : VideoSecretKey;
+
+                             VideoFeedNumber = pk.VideoFeedNumber != null ? pk.VideoFeedNumber : VideoFeedNumber;
+
+                             VideoFeedText = VideoFeedNumber.ToString();
+
+                             VideoBaseURL = pk.VideoBaseUrl != null ? pk.VideoBaseUrl : VideoBaseURL;
+
+                             VideoPhotoURL = pk.VideoPhotoURL != null ? pk.VideoPhotoURL : VideoPhotoURL;
+
+                             CurrentBlog = pk.BlogId != null ? pk.BlogId : CurrentBlog;
+
+                             currentPortal = pk.PortalId != null ? pk.PortalId : currentPortal;
+
+                             TabID = pk.TabId != null ? pk.TabId : TabID;
+
+                             Author = pk.AuthorId != null ? pk.AuthorId : Author;
+
+                             //ArtOrBlog = (pk.Api != null && pk.VideoSecretKey != null) ? "both" : "articles";
 
                              //Decide whether photo or video
                              if (pk.VideoSecretKey != null)
@@ -122,7 +121,13 @@ namespace Brafton.Modules.Globals
                      }
 
                  }
-
+            public static void LogMessage(string msg, int severity = 0)
+            {
+                if (severity == 1 || debugmode)
+                {
+                    MyGlobalError = MyGlobalError + msg + "<br/>";
+                }
+            }
 
     }
 

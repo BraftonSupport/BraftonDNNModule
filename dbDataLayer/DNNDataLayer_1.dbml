@@ -161,4 +161,25 @@
       <Column Name="LowerEmail" Type="System.String" DbType="NVarChar(256)" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
     </Type>
   </Table>
+  <Table Name="dbo.Brafton" Member="Brafton_tables">
+    <Type Name="Brafton_table">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Content" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Api" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BaseUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BlogId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TabId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DomainName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Limit" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IncUpdatedFeedContentValue" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Counter" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VideoPhotoURL" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VideoBaseUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VideoPublicKey" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VideoSecretKey" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="VideoFeedNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AuthorId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

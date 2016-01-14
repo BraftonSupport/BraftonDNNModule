@@ -11,8 +11,9 @@
 */
 
 using System.Collections.Generic;
-//using System.Xml;
+using System.Xml;
 using DotNetNuke.Entities.Modules;
+using DotNetNuke.Services;
 using DotNetNuke.Services.Search;
 
 namespace Brafton.Modules.BraftonImporter7_02_02.Components
@@ -37,7 +38,7 @@ namespace Brafton.Modules.BraftonImporter7_02_02.Components
     /// -----------------------------------------------------------------------------
 
     //uncomment the interfaces to add the support.
-    public class FeatureController //: IPortable, ISearchable, IUpgradeable
+    public class FeatureController : IUpgradeable
     {
 
 
@@ -116,7 +117,7 @@ namespace Brafton.Modules.BraftonImporter7_02_02.Components
 
         //return SearchItemCollection;
 
-        //	throw new System.NotImplementedException("The method or operation is not implemented.");
+        //    throw new System.NotImplementedException("The method or operation is not implemented.");
         //}
 
         /// -----------------------------------------------------------------------------
@@ -125,10 +126,11 @@ namespace Brafton.Modules.BraftonImporter7_02_02.Components
         /// </summary>
         /// <param name="Version">The current version of the module</param>
         /// -----------------------------------------------------------------------------
-        //public string UpgradeModule(string Version)
-        //{
-        //	throw new System.NotImplementedException("The method or operation is not implemented.");
-        //}
+        public string UpgradeModule(string Version)
+        {
+        	//throw new System.NotImplementedException("The method or operation is not implemented.");
+            return Version;
+        }
 
         #endregion
 

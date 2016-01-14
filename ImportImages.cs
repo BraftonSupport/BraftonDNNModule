@@ -19,6 +19,7 @@ namespace ImportImages
 {
     public class ImageDownload
     {
+        public string urlDirectory;
         /// <summary>
         /// Function to download Image from website
         /// </summary>
@@ -38,14 +39,10 @@ namespace ImportImages
             string physicalDir = HttpRuntime.BinDirectory;
             //Get current directory for style sheets and images
             string appPath = HttpRuntime.AppDomainAppVirtualPath == "/" ? appPath = "" : appPath = HttpRuntime.AppDomainAppVirtualPath;
-            int portal = MyGlobals.currentPortal;
-            int blog = MyGlobals.CurrentBlog;
-            //physicalDir = physicalDir.Substring(0, physicalDir.Length - 4) + "images";
+            int? portal = MyGlobals.currentPortal;
+            int? blog = MyGlobals.CurrentBlog;
             physicalDir = physicalDir.Substring(0, physicalDir.Length - 4) + "Portals/" + portal + "/blog/files/" + blog + "/"+contentstring;
-
-            //MyGlobals.imageInfo = MyGlobals.imageInfo + "***************************************************************************************************************<br>";
-            MyGlobals.MyGlobalError = MyGlobals.MyGlobalError + "The directory for download is " +physicalDir +"<br>";
-
+            urlDirectory = appPath + "Portals/" + portal + "/blog/files/" + blog + "/" + contentstring;
             WebClient client = new WebClient();
             Stream stream = client.OpenRead(photoURL);
             Bitmap workingBitmap = new Bitmap(stream);
@@ -59,6 +56,7 @@ namespace ImportImages
             if (_Image != null)
             {
                 Directory.CreateDirectory(physicalDir);
+                MyGlobals.LogMessage("file should exists at : " + physicalDir + "\\" + imageName + ".jpg");
                 // lets save image to disk                            
                 _Image.Save(@"" + physicalDir + "\\" + imageName + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
             }

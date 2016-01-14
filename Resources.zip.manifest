@@ -46,6 +46,10 @@
     </file>
     <file>
       <path />
+      <name>BraftonRegister.cs</name>
+    </file>
+    <file>
+      <path />
       <name>BraftonVideoClass.cs</name>
     </file>
     <file>
@@ -58,15 +62,7 @@
     </file>
     <file>
       <path />
-      <name>Class1.cs</name>
-    </file>
-    <file>
-      <path />
       <name>Class2.cs</name>
-    </file>
-    <file>
-      <path />
-      <name>Class3.cs</name>
     </file>
     <file>
       <path />
@@ -359,6 +355,10 @@
     <file>
       <path>Documentation/</path>
       <name>Documentation.html</name>
+    </file>
+    <file>
+      <path>Images/</path>
+      <name>BR.png</name>
     </file>
     <file>
       <path>install/BraftonImporter7_02_02_00.00.01_Install/</path>

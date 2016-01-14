@@ -74,17 +74,17 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiContext.cs" />
-    <Compile Include="ApiDecodeException.cs" />
-    <Compile Include="ApiNotAvailableException.cs" />
+    <Compile Include="Libs\APIClientLibrary\ApiContext.cs" />
+    <Compile Include="Libs\APIClientLibrary\ApiDecodeException.cs" />
+    <Compile Include="Libs\APIClientLibrary\ApiNotAvailableException.cs" />
     <Compile Include="Brafton.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BraftonRegister.cs" />
     <Compile Include="BraftonVideoClass.cs" />
-    <Compile Include="category.cs" />
-    <Compile Include="Class2.cs" />
+    <Compile Include="Libs\APIClientLibrary\category.cs" />
     <Compile Include="BraftonError.cs" />
-    <Compile Include="comment.cs" />
+    <Compile Include="Libs\APIClientLibrary\comment.cs" />
     <Compile Include="Components\FeatureController.cs" />
     <Compile Include="Components\ItemController.cs" />
     <Compile Include="Components\Item.cs" />
@@ -94,7 +94,6 @@
     <Compile Include="BraftonImporter7_02_02ModuleSettingsBase.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DataTables.cs" />
     <Compile Include="dbDataLayer\DNNDataLayer_1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -105,12 +104,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DNNDataLayer.dbml</DependentUpon>
     </Compile>
-    <Compile Include="enumeratedTypes.cs" />
+    <Compile Include="Libs\APIClientLibrary\enumeratedTypes.cs" />
     <Compile Include="GetImages.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="ImportImages.cs" />
-    <Compile Include="newsItem.cs" />
-    <Compile Include="photo.cs" />
+    <Compile Include="Libs\APIClientLibrary\newsItem.cs" />
+    <Compile Include="Libs\APIClientLibrary\photo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.ascx.cs">
       <DependentUpon>Settings.ascx</DependentUpon>
@@ -119,50 +118,133 @@
     <Compile Include="Settings.ascx.designer.cs">
       <DependentUpon>Settings.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Table.cs" />
-    <Compile Include="Video\Articles\AdferoArticle.cs" />
-    <Compile Include="Video\Articles\AdferoArticleList.cs" />
-    <Compile Include="Video\Articles\AdferoArticleListItem.cs" />
-    <Compile Include="Video\ArticlePhotos\AdferoArticlePhoto.cs" />
-    <Compile Include="Video\ArticlePhotos\AdferoArticlePhotoList.cs" />
-    <Compile Include="Video\ArticlePhotos\AdferoArticlePhotoListItem.cs" />
-    <Compile Include="Video\ArticlePhotos\AdferoArticlePhotosClient.cs" />
-    <Compile Include="Video\Articles\AdferoArticlesClient.cs" />
-    <Compile Include="Video\Briefs\AdferoBrief.cs" />
-    <Compile Include="Video\Briefs\AdferoBriefList.cs" />
-    <Compile Include="Video\Briefs\AdferoBriefListItem.cs" />
-    <Compile Include="Video\Briefs\AdferoBriefsClient.cs" />
-    <Compile Include="Video\AdferoClient.cs" />
-    <Compile Include="Video\AdferoCredentials.cs" />
-    <Compile Include="Video\AdferoEntityBase.cs" />
-    <Compile Include="Video\AdferoHelpers.cs" />
-    <Compile Include="Video\AdferoListBase.cs" />
-    <Compile Include="Video\Photo\AdferoPhoto.cs" />
-    <Compile Include="Video\Photo\AdferoPhotoClient.cs" />
-    <Compile Include="Video\Photo\AdferoPhotosClient.cs" />
-    <Compile Include="Video\Photo\AdferoScaleAxis.cs" />
-    <Compile Include="Video\VideoPlayer\AdferoPlayers.cs" />
-    <Compile Include="Video\VideoPlayer\AdferoVersion.cs" />
-    <Compile Include="Video\AdferoVideoClient.cs" />
-    <Compile Include="Video\VideoOutput\AdferoVideoOutput.cs" />
-    <Compile Include="Video\VideoOutput\AdferoVideoOutputList.cs" />
-    <Compile Include="Video\VideoOutput\AdferoVideoOutputListItem.cs" />
-    <Compile Include="Video\VideoOutput\AdferoVideoOutputsClient.cs" />
-    <Compile Include="Video\VideoPlayer\AdferoVideoPlayer.cs" />
-    <Compile Include="Video\VideoPlayer\AdferoVideoPlayersClient.cs" />
-    <Compile Include="Video\Categories\AdferoCategoriesClient.cs" />
-    <Compile Include="Video\Categories\AdferoCategory.cs" />
-    <Compile Include="Video\Categories\AdferoCategoryList.cs" />
-    <Compile Include="Video\Categories\AdferoCategoryListItem.cs" />
-    <Compile Include="Video\Feeds\AdferoFeed.cs" />
-    <Compile Include="Video\Feeds\AdferoFeedList.cs" />
-    <Compile Include="Video\Feeds\AdferoFeedListItem.cs" />
-    <Compile Include="Video\Feeds\AdferoFeedsClient.cs" />
+    <Compile Include="Libs\Video\AdferoClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\AdferoCredentials.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\AdferoEntityBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\AdferoHelpers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\AdferoListBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\AdferoVideoClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\ArticlePhotos\AdferoArticlePhoto.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\ArticlePhotos\AdferoArticlePhotoList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\ArticlePhotos\AdferoArticlePhotoListItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\ArticlePhotos\AdferoArticlePhotosClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Articles\AdferoArticle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Articles\AdferoArticleList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Articles\AdferoArticleListItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Articles\AdferoArticlesClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Briefs\AdferoBrief.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Briefs\AdferoBriefList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Briefs\AdferoBriefListItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Briefs\AdferoBriefsClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Categories\AdferoCategoriesClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Categories\AdferoCategory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Categories\AdferoCategoryList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Categories\AdferoCategoryListItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Feeds\AdferoFeed.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Feeds\AdferoFeedList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Feeds\AdferoFeedListItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Feeds\AdferoFeedsClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Photo\AdferoPhoto.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Photo\AdferoPhotoClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Photo\AdferoPhotosClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\Photo\AdferoScaleAxis.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\VideoOutput\AdferoVideoOutput.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\VideoOutput\AdferoVideoOutputList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\VideoOutput\AdferoVideoOutputListItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\VideoOutput\AdferoVideoOutputsClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\VideoPlayer\AdferoPlayers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\VideoPlayer\AdferoVersion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\VideoPlayer\AdferoVideoPlayer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Libs\Video\VideoPlayer\AdferoVideoPlayersClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="View.ascx.cs">
       <DependentUpon>View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="View.ascx.designer.cs">
       <DependentUpon>View.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminControl.ascx.cs">
+      <DependentUpon>AdminControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminControl.ascx.designer.cs">
+      <DependentUpon>AdminControl.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -172,11 +254,17 @@
     </Content>
     <Content Include="Documentation\Documentation.css" />
     <Content Include="Documentation\Documentation.html" />
+    <Content Include="Images\BR.png" />
+    <Content Include="Images\loader-1.gif" />
+    <Content Include="Images\loader-2.gif" />
+    <Content Include="Images\loader-3.gif" />
+    <Content Include="Images\loader.gif" />
     <Content Include="License.txt" />
     <Content Include="module.css" />
     <Content Include="ReleaseNotes.txt" />
     <Content Include="Settings.ascx" />
     <Content Include="View.ascx" />
+    <Content Include="AdminControl.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BraftonImporter7_02_02.dnn">
@@ -218,6 +306,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Providers\DataProviders\SqlDataProvider\00.00.02.SqlDataProvider" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -234,6 +323,9 @@
     <None Include="dbDataLayer\DNNDataLayer_1.dbml.layout">
       <DependentUpon>DNNDataLayer_1.dbml</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Libs\Video\Photos\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

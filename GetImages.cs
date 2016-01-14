@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.SqlClient;
+using System.Configuration;
 using System.Text;
 using System.Web.Hosting;
 using ImportImages;
@@ -8,8 +10,10 @@ using System.IO;
 using System.Drawing;
 using System.Net;
 using System.Web;
-
+using System.Collections.Specialized;
 using Brafton.Modules.Globals;
+
+using DotNetNuke.Entities;
 
 class GetImages
 {
@@ -22,6 +26,7 @@ class GetImages
     public string _descript;
     public int _contentId;
     public string _imageName;
+    Boolean _isDescription = false;
 
     public GetImages(string photoURL, string entry, string description, string appPath, string caption, int contentId)
     {
@@ -33,77 +38,61 @@ class GetImages
         _contentId = contentId;
     }
 
-
-
     public void DownloadImageDebug()
     {
-        string RootURl = HttpContext.Current.Request.Url.Host;
-        RootURl = "http://" + RootURl;
+
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SiteSqlServer"].ToString());
+        SqlCommand cmd = new SqlCommand();
+        connection.Open();
+        cmd.Connection = connection;
+        cmd.CommandText = "Select URL FROM WebServers";
+        SqlDataReader urls = cmd.ExecuteReader();
+        int count = 0;
+        string RootURl = string.Empty;
+        while (urls.Read())
+        {
+            RootURl = "http://" + urls.GetString(0);
+            ++count;
+        }
+        if (count != 1)
+        {
+            RootURl = "";
+        }
+        //string newRoot = Brafton.DotNetNuke.BraftonSchedule.modTabSettings["clientDomain"].ToString();
         string imageName = "";
 
         // To grab the first instance of the <p> and insert the image in there
-        int tmpDesPos = _description.IndexOf("<p>");
+        if (!String.IsNullOrEmpty(_description))
+        {
+            _isDescription = true;
+            int tmpDesPos = _description.IndexOf("<p>");
+        }
         int tmpEntPos = _entry.IndexOf("<p>");
-
+        
         // Download the image from the feed
         int lastPlace = _photoURL.IndexOf("_", 0);
+        if (lastPlace.ToString() == "-1")
+        {
+            lastPlace = _photoURL.LastIndexOf(".");
+        }
         int firstPlace = _photoURL.LastIndexOf("/");
-
-        if (MyGlobals.imageID == "xxx")//if the global imageid is default it is article else it is video
-        {
-            imageName = _photoURL.Substring(firstPlace, lastPlace - firstPlace);
-        }
-        else
-        {
-            imageName ="/"+ MyGlobals.imageID;
-        }
+        imageName = _photoURL.Substring(firstPlace, lastPlace - firstPlace);
         _imageName = imageName.Substring(1);
 
-        MyGlobals.MyGlobalError = MyGlobals.MyGlobalError + " In getimgae() Image name is " + _imageName + "<br/>";
-       
-        //string checkImage = System.Environment.CurrentDirectory + "images\\" + imageName.Substring(1) + ".jpg";
-        string checkImage = _appPath + "images\\" + imageName.Substring(1) + ".jpg";
+        ImageDownload imgObject = new ImageDownload();
+        imgObject.saveImage(_photoURL, imageName, _contentId);
 
+        string path = imgObject.urlDirectory;
+        string ImageUrl = "/" + path + "/" + imageName + ".jpg";
         //Keep this before the image download in case the posts were deleted for reimport
-        _entry = _entry.Insert(tmpEntPos + "<p>".Length, "<div class='newsThumbSingle'><img alt=\"" + _caption + "\" class='br-thumbnail-image-article' style='width:200px;height:200px;' src='"+ RootURl  + "/images" + imageName + ".jpg' /><div class='caption'>" + _caption + "</div></div>");
+        _entry = _entry.Insert(tmpEntPos + "<p>".Length, "<div class='newsThumbSingle'><img alt=\"" + _caption + "\" class='br-thumbnail-image-article' style='width:200px;height:200px;' src='"+ RootURl  + ImageUrl + "' /><div class='caption'>" + _caption + "</div></div>");
         _entry = _entry.Insert(0, "<style type='text/css'> .newsThumbSingle {background:#ddd;margin:5px;padding:5px;position:relative;float:right;-moz-border-radius: 3px;border-radius: 3px;z-index:1;text-align:center;max-width:200px;} .caption{font-size:10px;line-height:normal;}</style>");
-
-        _description = _description.Insert(0, "<img class='br-thumbnail-image' style='padding:10px;float:left;width:33%;height:auto;max-width:250px;' src='" + RootURl + "/images" + imageName + ".jpg' />");
-
-        //check to see if image exists in images folder if not download it
-        if (!File.Exists(checkImage))
+        if (_isDescription)
         {
-            //MyGlobals.imageInfo = MyGlobals.imageInfo + "made it to call image download";
-            ImageDownload imgObject = new ImageDownload();
-            imgObject.saveImage(_photoURL, imageName, _contentId);
+            _description = _description.Insert(0, "<img class='br-thumbnail-image' style='padding:10px;float:left;width:33%;height:auto;max-width:250px;' src='" + RootURl +ImageUrl + "' />");
         }
     }
 
+
+    public bool isDescription { get; set; }
 }
-
-//ORiginal DownloadImage Method replaced 7/2014 fjd
-//public void DownloadImage()
-//{
-
-//    // To grab the first instance of the <p> and insert the image in there
-//    int tmpDesPos = _description.IndexOf("<p>");
-//    int tmpEntPos = _entry.IndexOf("<p>");
-
-//    // Download the image from the feed
-//    int lastPlace = _photoURL.IndexOf("_", 0);
-//    int firstPlace = _photoURL.LastIndexOf("/");
-//    string imageName = _photoURL.Substring(firstPlace, lastPlace - firstPlace);
-//    string checkImage = HostingEnvironment.ApplicationPhysicalPath + "images\\" + imageName.Substring(1) + ".jpg";
-
-//    //Keep this before the image download in case the posts were deleted for reimport
-//    _entry = _entry.Insert(tmpEntPos + "<p>".Length, "<div class='newsThumbSingle'><img alt=\"" + _caption + "\" class='thumbnail' width='200px' height='200px' src='" + _appPath + "/images" + imageName + ".jpg' /><div class='caption'>" + _caption + "</div></div>");
-//    _entry = _entry.Insert(0, "<style type='text/css'> .newsThumbSingle {background:#ddd;margin:5px;padding:5px;position:relative;float:right;-moz-border-radius: 3px;border-radius: 3px;z-index:1;text-align:center;max-width:200px;} .caption{font-size:10px;line-height:normal;}</style>");
-
-//    _description = _description.Insert(0, "<img class='thumbnail' style='padding:10px' align='left' width='150px' height='150px' src='" + _appPath + "/images" + imageName + ".jpg' />");
-
-//    if (!File.Exists(checkImage))
-//    {
-//        ImageDownload imgObject = new ImageDownload();
-//        imgObject.saveImage(_photoURL, imageName);     
-//    }
-//}

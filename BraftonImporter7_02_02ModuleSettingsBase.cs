@@ -16,5 +16,10 @@ namespace Brafton.Modules.BraftonImporter7_02_02
 {
     public class BraftonImporter7_02_02ModuleSettingsBase : ModuleSettingsBase
     {
+        public string GetSetting(string key)
+        {
+            string setting = Settings.Contains(key) ? Settings[key].ToString() : "no " + key;
+            return setting;
+        }
     }
 }

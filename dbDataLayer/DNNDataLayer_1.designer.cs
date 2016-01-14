@@ -20,9 +20,9 @@ namespace Brafton.Modules.BraftonImporter7_02_02.dbDataLayer
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-
-
-    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name = "DNN_DB")]
+	
+	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DNN_DB")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -60,6 +60,9 @@ namespace Brafton.Modules.BraftonImporter7_02_02.dbDataLayer
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertBrafton_table(Brafton_table instance);
+    partial void UpdateBrafton_table(Brafton_table instance);
+    partial void DeleteBrafton_table(Brafton_table instance);
     #endregion
 		
 		public DataClasses1DataContext() :
@@ -169,6 +172,14 @@ namespace Brafton.Modules.BraftonImporter7_02_02.dbDataLayer
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Brafton_table> Brafton_tables
+		{
+			get
+			{
+				return this.GetTable<Brafton_table>();
 			}
 		}
 	}
@@ -3629,6 +3640,452 @@ namespace Brafton.Modules.BraftonImporter7_02_02.dbDataLayer
 					this._LowerEmail = value;
 					this.SendPropertyChanged("LowerEmail");
 					this.OnLowerEmailChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Brafton")]
+	public partial class Brafton_table : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Content;
+		
+		private string _Api;
+		
+		private string _BaseUrl;
+		
+		private System.Nullable<int> _BlogId;
+		
+		private System.Nullable<int> _PortalId;
+		
+		private System.Nullable<int> _TabId;
+		
+		private string _DomainName;
+		
+		private System.Nullable<int> _Limit;
+		
+		private int _IncUpdatedFeedContentValue;
+		
+		private System.Nullable<int> _Counter;
+		
+		private string _VideoPhotoURL;
+		
+		private string _VideoBaseUrl;
+		
+		private string _VideoPublicKey;
+		
+		private string _VideoSecretKey;
+		
+		private System.Nullable<int> _VideoFeedNumber;
+		
+		private System.Nullable<int> _AuthorId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnContentChanging(string value);
+    partial void OnContentChanged();
+    partial void OnApiChanging(string value);
+    partial void OnApiChanged();
+    partial void OnBaseUrlChanging(string value);
+    partial void OnBaseUrlChanged();
+    partial void OnBlogIdChanging(System.Nullable<int> value);
+    partial void OnBlogIdChanged();
+    partial void OnPortalIdChanging(System.Nullable<int> value);
+    partial void OnPortalIdChanged();
+    partial void OnTabIdChanging(System.Nullable<int> value);
+    partial void OnTabIdChanged();
+    partial void OnDomainNameChanging(string value);
+    partial void OnDomainNameChanged();
+    partial void OnLimitChanging(System.Nullable<int> value);
+    partial void OnLimitChanged();
+    partial void OnIncUpdatedFeedContentValueChanging(int value);
+    partial void OnIncUpdatedFeedContentValueChanged();
+    partial void OnCounterChanging(System.Nullable<int> value);
+    partial void OnCounterChanged();
+    partial void OnVideoPhotoURLChanging(string value);
+    partial void OnVideoPhotoURLChanged();
+    partial void OnVideoBaseUrlChanging(string value);
+    partial void OnVideoBaseUrlChanged();
+    partial void OnVideoPublicKeyChanging(string value);
+    partial void OnVideoPublicKeyChanged();
+    partial void OnVideoSecretKeyChanging(string value);
+    partial void OnVideoSecretKeyChanged();
+    partial void OnVideoFeedNumberChanging(System.Nullable<int> value);
+    partial void OnVideoFeedNumberChanged();
+    partial void OnAuthorIdChanging(System.Nullable<int> value);
+    partial void OnAuthorIdChanged();
+    #endregion
+		
+		public Brafton_table()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX)")]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this.OnContentChanging(value);
+					this.SendPropertyChanging();
+					this._Content = value;
+					this.SendPropertyChanged("Content");
+					this.OnContentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Api", DbType="NVarChar(MAX)")]
+		public string Api
+		{
+			get
+			{
+				return this._Api;
+			}
+			set
+			{
+				if ((this._Api != value))
+				{
+					this.OnApiChanging(value);
+					this.SendPropertyChanging();
+					this._Api = value;
+					this.SendPropertyChanged("Api");
+					this.OnApiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BaseUrl", DbType="NVarChar(MAX)")]
+		public string BaseUrl
+		{
+			get
+			{
+				return this._BaseUrl;
+			}
+			set
+			{
+				if ((this._BaseUrl != value))
+				{
+					this.OnBaseUrlChanging(value);
+					this.SendPropertyChanging();
+					this._BaseUrl = value;
+					this.SendPropertyChanged("BaseUrl");
+					this.OnBaseUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BlogId", DbType="Int")]
+		public System.Nullable<int> BlogId
+		{
+			get
+			{
+				return this._BlogId;
+			}
+			set
+			{
+				if ((this._BlogId != value))
+				{
+					this.OnBlogIdChanging(value);
+					this.SendPropertyChanging();
+					this._BlogId = value;
+					this.SendPropertyChanged("BlogId");
+					this.OnBlogIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PortalId", DbType="Int")]
+		public System.Nullable<int> PortalId
+		{
+			get
+			{
+				return this._PortalId;
+			}
+			set
+			{
+				if ((this._PortalId != value))
+				{
+					this.OnPortalIdChanging(value);
+					this.SendPropertyChanging();
+					this._PortalId = value;
+					this.SendPropertyChanged("PortalId");
+					this.OnPortalIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TabId", DbType="Int")]
+		public System.Nullable<int> TabId
+		{
+			get
+			{
+				return this._TabId;
+			}
+			set
+			{
+				if ((this._TabId != value))
+				{
+					this.OnTabIdChanging(value);
+					this.SendPropertyChanging();
+					this._TabId = value;
+					this.SendPropertyChanged("TabId");
+					this.OnTabIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DomainName", DbType="NVarChar(MAX)")]
+		public string DomainName
+		{
+			get
+			{
+				return this._DomainName;
+			}
+			set
+			{
+				if ((this._DomainName != value))
+				{
+					this.OnDomainNameChanging(value);
+					this.SendPropertyChanging();
+					this._DomainName = value;
+					this.SendPropertyChanged("DomainName");
+					this.OnDomainNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Limit", DbType="Int")]
+		public System.Nullable<int> Limit
+		{
+			get
+			{
+				return this._Limit;
+			}
+			set
+			{
+				if ((this._Limit != value))
+				{
+					this.OnLimitChanging(value);
+					this.SendPropertyChanging();
+					this._Limit = value;
+					this.SendPropertyChanged("Limit");
+					this.OnLimitChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IncUpdatedFeedContentValue", DbType="Int NOT NULL")]
+		public int IncUpdatedFeedContentValue
+		{
+			get
+			{
+				return this._IncUpdatedFeedContentValue;
+			}
+			set
+			{
+				if ((this._IncUpdatedFeedContentValue != value))
+				{
+					this.OnIncUpdatedFeedContentValueChanging(value);
+					this.SendPropertyChanging();
+					this._IncUpdatedFeedContentValue = value;
+					this.SendPropertyChanged("IncUpdatedFeedContentValue");
+					this.OnIncUpdatedFeedContentValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Counter", DbType="Int")]
+		public System.Nullable<int> Counter
+		{
+			get
+			{
+				return this._Counter;
+			}
+			set
+			{
+				if ((this._Counter != value))
+				{
+					this.OnCounterChanging(value);
+					this.SendPropertyChanging();
+					this._Counter = value;
+					this.SendPropertyChanged("Counter");
+					this.OnCounterChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoPhotoURL", DbType="NVarChar(MAX)")]
+		public string VideoPhotoURL
+		{
+			get
+			{
+				return this._VideoPhotoURL;
+			}
+			set
+			{
+				if ((this._VideoPhotoURL != value))
+				{
+					this.OnVideoPhotoURLChanging(value);
+					this.SendPropertyChanging();
+					this._VideoPhotoURL = value;
+					this.SendPropertyChanged("VideoPhotoURL");
+					this.OnVideoPhotoURLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoBaseUrl", DbType="NVarChar(MAX)")]
+		public string VideoBaseUrl
+		{
+			get
+			{
+				return this._VideoBaseUrl;
+			}
+			set
+			{
+				if ((this._VideoBaseUrl != value))
+				{
+					this.OnVideoBaseUrlChanging(value);
+					this.SendPropertyChanging();
+					this._VideoBaseUrl = value;
+					this.SendPropertyChanged("VideoBaseUrl");
+					this.OnVideoBaseUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoPublicKey", DbType="NVarChar(MAX)")]
+		public string VideoPublicKey
+		{
+			get
+			{
+				return this._VideoPublicKey;
+			}
+			set
+			{
+				if ((this._VideoPublicKey != value))
+				{
+					this.OnVideoPublicKeyChanging(value);
+					this.SendPropertyChanging();
+					this._VideoPublicKey = value;
+					this.SendPropertyChanged("VideoPublicKey");
+					this.OnVideoPublicKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoSecretKey", DbType="NVarChar(MAX)")]
+		public string VideoSecretKey
+		{
+			get
+			{
+				return this._VideoSecretKey;
+			}
+			set
+			{
+				if ((this._VideoSecretKey != value))
+				{
+					this.OnVideoSecretKeyChanging(value);
+					this.SendPropertyChanging();
+					this._VideoSecretKey = value;
+					this.SendPropertyChanged("VideoSecretKey");
+					this.OnVideoSecretKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VideoFeedNumber", DbType="Int")]
+		public System.Nullable<int> VideoFeedNumber
+		{
+			get
+			{
+				return this._VideoFeedNumber;
+			}
+			set
+			{
+				if ((this._VideoFeedNumber != value))
+				{
+					this.OnVideoFeedNumberChanging(value);
+					this.SendPropertyChanging();
+					this._VideoFeedNumber = value;
+					this.SendPropertyChanged("VideoFeedNumber");
+					this.OnVideoFeedNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuthorId", DbType="Int")]
+		public System.Nullable<int> AuthorId
+		{
+			get
+			{
+				return this._AuthorId;
+			}
+			set
+			{
+				if ((this._AuthorId != value))
+				{
+					this.OnAuthorIdChanging(value);
+					this.SendPropertyChanging();
+					this._AuthorId = value;
+					this.SendPropertyChanged("AuthorId");
+					this.OnAuthorIdChanged();
 				}
 			}
 		}

@@ -112,13 +112,37 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="API.Text" xml:space="preserve">
+    <value>Your API Key</value>
+  </data>
+  <data name="Author.Text" xml:space="preserve">
+    <value>Author of Blog Posts</value>
+  </data>
+  <data name="BlogName.Text" xml:space="preserve">
+    <value>Select your Blog.</value>
+  </data>
+  <data name="Brand.Text" xml:space="preserve">
+    <value>API Domain</value>
+  </data>
   <data name="ControlTitle_settings.Text" xml:space="preserve">
-    <value>BraftonImporter7_02_02 Settings</value>
+    <value>Brafton Content Importer</value>
+  </data>
+  <data name="FeedID.Help" xml:space="preserve">
+    <value>This will usually be 0</value>
+  </data>
+  <data name="FeedID.Text" xml:space="preserve">
+    <value>Your Feed ID.</value>
+  </data>
+  <data name="ImportType.Help" xml:space="preserve">
+    <value>What type of content will you be importing.</value>
+  </data>
+  <data name="ImportType.Text" xml:space="preserve">
+    <value>Import My: </value>
   </data>
   <data name="lblSetting1.Help" xml:space="preserve">
     <value>Put your value for Setting 1 here.</value>
@@ -131,5 +155,74 @@
   </data>
   <data name="lblSetting2.Text" xml:space="preserve">
     <value>Setting Two</value>
+  </data>
+  <data name="PrivateKey.Text" xml:space="preserve">
+    <value>Your Private Key</value>
+  </data>
+  <data name="PublicKey.Text" xml:space="preserve">
+    <value>Your Public Key</value>
+  </data>
+  <data name="Update.Help" xml:space="preserve">
+    <value>Should only be on when updating existing articles.</value>
+  </data>
+  <data name="Update.Text" xml:space="preserve">
+    <value>Update Existing Content</value>
+  </data>
+  <data name="EndButtonAssetID.Help" xml:space="preserve">
+    <value>Entering an Arch Id for use with the Arch Product will result in the Pause Link Url to be disabled.</value>
+  </data>
+  <data name="EndButtonAssetID.Text" xml:space="preserve">
+    <value>Ending Arch ID</value>
+  </data>
+  <data name="EndButtonLink.Text" xml:space="preserve">
+    <value>End of Video CTA URL</value>
+  </data>
+  <data name="EndButtonText.Help" xml:space="preserve">
+    <value>This field is intended for a clickable button and should be kept to as few words as possible. I.E. Click Here, Subscribe ect.</value>
+  </data>
+  <data name="EndButtonText.Text" xml:space="preserve">
+    <value>End of Video Button Text</value>
+  </data>
+  <data name="EndSubtitle.Text" xml:space="preserve">
+    <value>End of Video Subtitle</value>
+  </data>
+  <data name="EndTitle.Text" xml:space="preserve">
+    <value>End of Video Title</value>
+  </data>
+  <data name="PauseAssetID.Help" xml:space="preserve">
+    <value>Entering an Arch Id for use with the Arch Product will result in the Pause Link Url to be disabled.</value>
+  </data>
+  <data name="PauseAssetID.Text" xml:space="preserve">
+    <value>Pause Arch ID</value>
+  </data>
+  <data name="PauseLink.Text" xml:space="preserve">
+    <value>Video Pause CTA URL</value>
+  </data>
+  <data name="PauseText.Text" xml:space="preserve">
+    <value>Video Pause Message</value>
+  </data>
+  <data name="Debug.Help" xml:space="preserve">
+    <value>Turns On Debug Mode to help determine the cause of the importer not operating properly</value>
+  </data>
+  <data name="Debug.Text" xml:space="preserve">
+    <value>Importer Debug Mode</value>
+  </data>
+  <data name="AddImages.Help" xml:space="preserve">
+    <value>If using a template that displays the featured image it is recommended to allow the Blog Module to handle the images.  You may however insert the images into the content and the summary of the article if you need to based on your chosen template.</value>
+  </data>
+  <data name="AddImages.Text" xml:space="preserve">
+    <value>Featured Image</value>
+  </data>
+  <data name="atlantis.Help" xml:space="preserve">
+    <value>Custom CTA's require the use of the AtlantisJS Video player.  You may turn this option OFF if you are not receiving videos or wish to use a different video player on your site.  NOTE: Not all browsers have default video players.</value>
+  </data>
+  <data name="atlantis.Text" xml:space="preserve">
+    <value>Include AtlantisJS Player</value>
+  </data>
+  <data name="jQuery.Help" xml:space="preserve">
+    <value>AtlantisJS requires jQuery.  If you already use jQuery on this page you may turn this option OFF</value>
+  </data>
+  <data name="jQuery.Text" xml:space="preserve">
+    <value>Include jQuery</value>
   </data>
 </root>
