@@ -70,29 +70,37 @@ namespace Brafton.DotNetNuke
         // Note we need to give a default constructor when override it
         public BraftonSchedule() : base() { }
 
-        #region Debugging
-
-
-   
         public override void DoWork()
         {
             try
             {
-                if (MyGlobals.BraftonViewModuleId.Count == 0)
+                
+                if (MyGlobals.BraftonViewModuleId.Count.ToString() == "0")
                 {
                     retrieveAllModules();
                 }
                 foreach(int NewBrafId in MyGlobals.BraftonViewModuleId){
                     BraftonModuleId = NewBrafId;
+
                     var modInfo = new ModuleController().GetModule((int)BraftonModuleId);
                     modSettings = modInfo.ModuleSettings;
 
                     var modTabInfo = new ModuleController().GetTabModule((int)modInfo.TabModuleID);
                     modTabSettings = modTabInfo.TabModuleSettings;
 
-                    BraftonErrorSystem = new ErrorReporting(modSettings);
+                    if (BraftonParameters())
+                    {
+                        BraftonErrorSystem = new ErrorReporting(modSettings);
+                        string description = updateScriptDebug();
 
-                    string description = updateScriptDebug();
+                        //determine what is to run
+                        //string articleResult = runArticleImporter();
+                        //string videoResult = runVideoImporter();
+                    }
+                    else
+                    {
+                        throw new Exception("can't run importer");
+                    }
                 }
                 ScheduleHistoryItem.Succeeded = true;
             }
@@ -110,13 +118,22 @@ namespace Brafton.DotNetNuke
 
                 //log the exception into the DNN core
                 Exceptions.LogException(exc);
-
-                MyGlobals.LogMessage("There was a problem with the Importer.  A message has been sent to your CMS in an effort to expedite our troubleshooting efforts", 1);
-                //Make remote post to error api here
-                BraftonErrorReport(exc.ToString());
+                
+                if(ErrorReporting.Loop.ToString() == "1" && ErrorReporting.CheckErrors(exc.GetType().Name)){
+                    MyGlobals.LogMessage("There was a problem with the Importer.  A message has been sent to your CMS in an effort to expedite our troubleshooting efforts", 1);
+                    //Make remote post to error api here
+                    BraftonErrorReport(exc.ToString());
+                }
+                MyGlobals.LogMessage("There was an error importing your content. Please check your Event Viewer for details." + Environment.NewLine + "If the problem persists please contact techsupport@brafton.com for assistance.", 1);
             }
 
 
+        }
+
+        private bool BraftonParameters()
+        {
+            //this will look for the settings and ensure everything is kosher
+            return true;
         }
 
         private void retrieveAllModules()
@@ -139,7 +156,6 @@ namespace Brafton.DotNetNuke
         {
             BraftonErrorSystem.RemotePost(p);
         }
-        #endregion
 
         
 
@@ -255,24 +271,18 @@ namespace Brafton.DotNetNuke
             }
         }
 
-        #region Debugging update script
         public string updateScriptDebug()
         {
-            
-           
+
             string typeToImport = modTabSettings["RadioButtonList1"].ToString();
             MyGlobals.debugmode = Int32.Parse(modSettings["DebugMode"].ToString()) == 1 ? true : false;
             MyGlobals.LogMessage("Importing " + typeToImport, 1);
-
-            //connection.Open();
-            //cmd.Connection = connection;
 
             string appPath = HttpRuntime.AppDomainAppVirtualPath == "/" ? appPath = "" : appPath = HttpRuntime.AppDomainAppVirtualPath;
             DesktopModuleInfo braftonModule = DesktopModuleController.GetDesktopModuleByFriendlyName("Brafton Content Importer");
 
             MyGlobals.LogMessage("The ContentItemID id is " + braftonModule.ContentItemId);
             MyGlobals.LogMessage("The ModuleID id is " + BraftonModuleId);
-            //MyGlobals.LogMessage("The tabmoduleid is " + modInfo.TabModuleID);
 
             string newsURL = modSettings["APIKey"].ToString();
             MyGlobals.LogMessage("The newsurl is " + newsURL);
@@ -312,8 +322,7 @@ namespace Brafton.DotNetNuke
             if (typeToImport.Equals("articles", StringComparison.OrdinalIgnoreCase) || typeToImport.Equals("both", StringComparison.OrdinalIgnoreCase))
             {
                 ApiContext ac = new ApiContext(newsURL, baseUrl);
-            #region Article Loop DEBUG
-            //Fill Blog_Entries DataTable
+            #region Article Loop
             foreach (newsItem ni in ac.News)
             {
                 artBlogID = ni.id.ToString();
@@ -358,6 +367,7 @@ namespace Brafton.DotNetNuke
                     photo.Instance photoInstance = null;
                     photo img = null;
                     imgName = null;
+                    #region IMAGE HANDLER
                     try
                     {
                         img = ni.photos.First();
@@ -385,8 +395,6 @@ namespace Brafton.DotNetNuke
                     {
                         //No Image found for article
                     }
-
-                    #region IMAGE HANDLER
                     //Checks to see if medium images are enabled on the feed 
                     if (photoInstance != null)
                     {
@@ -437,16 +445,16 @@ namespace Brafton.DotNetNuke
                     }
                     //increment limit
                     l++;
+                    ErrorReporting.Loop++;
                 }
             }
-            #endregion Article Loop DEBUG
-            //cmd.Dispose();
-            //connection.Close();
+            #endregion Article Loop
             }//end of articles
             
             if( (typeToImport.Equals("both", StringComparison.OrdinalIgnoreCase) || typeToImport.Equals("video", StringComparison.OrdinalIgnoreCase) ) )
             {
                 MyGlobals.LogMessage("Starting Videos");
+                ErrorReporting.Loop = 1;
                    ImportVideos();
              }
             string returnVal = "include video";
@@ -478,7 +486,6 @@ namespace Brafton.DotNetNuke
             }
             return ContentId;
         }
-        #endregion Debugging update script
 
         #region Add New ContentItem
         public ContentItem AddContentItem(Dictionary<string, dynamic> Contents, int? ContentItemId = null)
@@ -687,6 +694,7 @@ namespace Brafton.DotNetNuke
                     #endregion Categories
                 }
                 limit++;
+                ErrorReporting.Loop++;
         }
         #endregion Video Import
 

@@ -20,9 +20,9 @@ namespace Brafton.Modules.BraftonImporter7_02_02.dbDataLayer
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-	
-	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DNN_DB")]
+
+
+    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name = "DNN_DB")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -63,6 +63,9 @@ namespace Brafton.Modules.BraftonImporter7_02_02.dbDataLayer
     partial void InsertBrafton_table(Brafton_table instance);
     partial void UpdateBrafton_table(Brafton_table instance);
     partial void DeleteBrafton_table(Brafton_table instance);
+    partial void InsertSchedule(Schedule instance);
+    partial void UpdateSchedule(Schedule instance);
+    partial void DeleteSchedule(Schedule instance);
     #endregion
 		
 		public DataClasses1DataContext() :
@@ -180,6 +183,14 @@ namespace Brafton.Modules.BraftonImporter7_02_02.dbDataLayer
 			get
 			{
 				return this.GetTable<Brafton_table>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Schedule> Schedules
+		{
+			get
+			{
+				return this.GetTable<Schedule>();
 			}
 		}
 	}
@@ -4086,6 +4097,476 @@ namespace Brafton.Modules.BraftonImporter7_02_02.dbDataLayer
 					this._AuthorId = value;
 					this.SendPropertyChanged("AuthorId");
 					this.OnAuthorIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Schedule")]
+	public partial class Schedule : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ScheduleID;
+		
+		private string _TypeFullName;
+		
+		private int _TimeLapse;
+		
+		private string _TimeLapseMeasurement;
+		
+		private int _RetryTimeLapse;
+		
+		private string _RetryTimeLapseMeasurement;
+		
+		private int _RetainHistoryNum;
+		
+		private string _AttachToEvent;
+		
+		private bool _CatchUpEnabled;
+		
+		private bool _Enabled;
+		
+		private string _ObjectDependencies;
+		
+		private string _Servers;
+		
+		private System.Nullable<int> _CreatedByUserID;
+		
+		private System.Nullable<System.DateTime> _CreatedOnDate;
+		
+		private System.Nullable<int> _LastModifiedByUserID;
+		
+		private System.Nullable<System.DateTime> _LastModifiedOnDate;
+		
+		private string _FriendlyName;
+		
+		private System.Nullable<System.DateTime> _ScheduleStartDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnScheduleIDChanging(int value);
+    partial void OnScheduleIDChanged();
+    partial void OnTypeFullNameChanging(string value);
+    partial void OnTypeFullNameChanged();
+    partial void OnTimeLapseChanging(int value);
+    partial void OnTimeLapseChanged();
+    partial void OnTimeLapseMeasurementChanging(string value);
+    partial void OnTimeLapseMeasurementChanged();
+    partial void OnRetryTimeLapseChanging(int value);
+    partial void OnRetryTimeLapseChanged();
+    partial void OnRetryTimeLapseMeasurementChanging(string value);
+    partial void OnRetryTimeLapseMeasurementChanged();
+    partial void OnRetainHistoryNumChanging(int value);
+    partial void OnRetainHistoryNumChanged();
+    partial void OnAttachToEventChanging(string value);
+    partial void OnAttachToEventChanged();
+    partial void OnCatchUpEnabledChanging(bool value);
+    partial void OnCatchUpEnabledChanged();
+    partial void OnEnabledChanging(bool value);
+    partial void OnEnabledChanged();
+    partial void OnObjectDependenciesChanging(string value);
+    partial void OnObjectDependenciesChanged();
+    partial void OnServersChanging(string value);
+    partial void OnServersChanged();
+    partial void OnCreatedByUserIDChanging(System.Nullable<int> value);
+    partial void OnCreatedByUserIDChanged();
+    partial void OnCreatedOnDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedOnDateChanged();
+    partial void OnLastModifiedByUserIDChanging(System.Nullable<int> value);
+    partial void OnLastModifiedByUserIDChanged();
+    partial void OnLastModifiedOnDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastModifiedOnDateChanged();
+    partial void OnFriendlyNameChanging(string value);
+    partial void OnFriendlyNameChanged();
+    partial void OnScheduleStartDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnScheduleStartDateChanged();
+    #endregion
+		
+		public Schedule()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScheduleID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ScheduleID
+		{
+			get
+			{
+				return this._ScheduleID;
+			}
+			set
+			{
+				if ((this._ScheduleID != value))
+				{
+					this.OnScheduleIDChanging(value);
+					this.SendPropertyChanging();
+					this._ScheduleID = value;
+					this.SendPropertyChanged("ScheduleID");
+					this.OnScheduleIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeFullName", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string TypeFullName
+		{
+			get
+			{
+				return this._TypeFullName;
+			}
+			set
+			{
+				if ((this._TypeFullName != value))
+				{
+					this.OnTypeFullNameChanging(value);
+					this.SendPropertyChanging();
+					this._TypeFullName = value;
+					this.SendPropertyChanged("TypeFullName");
+					this.OnTypeFullNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeLapse", DbType="Int NOT NULL")]
+		public int TimeLapse
+		{
+			get
+			{
+				return this._TimeLapse;
+			}
+			set
+			{
+				if ((this._TimeLapse != value))
+				{
+					this.OnTimeLapseChanging(value);
+					this.SendPropertyChanging();
+					this._TimeLapse = value;
+					this.SendPropertyChanged("TimeLapse");
+					this.OnTimeLapseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TimeLapseMeasurement", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string TimeLapseMeasurement
+		{
+			get
+			{
+				return this._TimeLapseMeasurement;
+			}
+			set
+			{
+				if ((this._TimeLapseMeasurement != value))
+				{
+					this.OnTimeLapseMeasurementChanging(value);
+					this.SendPropertyChanging();
+					this._TimeLapseMeasurement = value;
+					this.SendPropertyChanged("TimeLapseMeasurement");
+					this.OnTimeLapseMeasurementChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RetryTimeLapse", DbType="Int NOT NULL")]
+		public int RetryTimeLapse
+		{
+			get
+			{
+				return this._RetryTimeLapse;
+			}
+			set
+			{
+				if ((this._RetryTimeLapse != value))
+				{
+					this.OnRetryTimeLapseChanging(value);
+					this.SendPropertyChanging();
+					this._RetryTimeLapse = value;
+					this.SendPropertyChanged("RetryTimeLapse");
+					this.OnRetryTimeLapseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RetryTimeLapseMeasurement", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string RetryTimeLapseMeasurement
+		{
+			get
+			{
+				return this._RetryTimeLapseMeasurement;
+			}
+			set
+			{
+				if ((this._RetryTimeLapseMeasurement != value))
+				{
+					this.OnRetryTimeLapseMeasurementChanging(value);
+					this.SendPropertyChanging();
+					this._RetryTimeLapseMeasurement = value;
+					this.SendPropertyChanged("RetryTimeLapseMeasurement");
+					this.OnRetryTimeLapseMeasurementChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RetainHistoryNum", DbType="Int NOT NULL")]
+		public int RetainHistoryNum
+		{
+			get
+			{
+				return this._RetainHistoryNum;
+			}
+			set
+			{
+				if ((this._RetainHistoryNum != value))
+				{
+					this.OnRetainHistoryNumChanging(value);
+					this.SendPropertyChanging();
+					this._RetainHistoryNum = value;
+					this.SendPropertyChanged("RetainHistoryNum");
+					this.OnRetainHistoryNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AttachToEvent", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string AttachToEvent
+		{
+			get
+			{
+				return this._AttachToEvent;
+			}
+			set
+			{
+				if ((this._AttachToEvent != value))
+				{
+					this.OnAttachToEventChanging(value);
+					this.SendPropertyChanging();
+					this._AttachToEvent = value;
+					this.SendPropertyChanged("AttachToEvent");
+					this.OnAttachToEventChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CatchUpEnabled", DbType="Bit NOT NULL")]
+		public bool CatchUpEnabled
+		{
+			get
+			{
+				return this._CatchUpEnabled;
+			}
+			set
+			{
+				if ((this._CatchUpEnabled != value))
+				{
+					this.OnCatchUpEnabledChanging(value);
+					this.SendPropertyChanging();
+					this._CatchUpEnabled = value;
+					this.SendPropertyChanged("CatchUpEnabled");
+					this.OnCatchUpEnabledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Enabled", DbType="Bit NOT NULL")]
+		public bool Enabled
+		{
+			get
+			{
+				return this._Enabled;
+			}
+			set
+			{
+				if ((this._Enabled != value))
+				{
+					this.OnEnabledChanging(value);
+					this.SendPropertyChanging();
+					this._Enabled = value;
+					this.SendPropertyChanged("Enabled");
+					this.OnEnabledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ObjectDependencies", DbType="VarChar(300) NOT NULL", CanBeNull=false)]
+		public string ObjectDependencies
+		{
+			get
+			{
+				return this._ObjectDependencies;
+			}
+			set
+			{
+				if ((this._ObjectDependencies != value))
+				{
+					this.OnObjectDependenciesChanging(value);
+					this.SendPropertyChanging();
+					this._ObjectDependencies = value;
+					this.SendPropertyChanged("ObjectDependencies");
+					this.OnObjectDependenciesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Servers", DbType="NVarChar(2000)")]
+		public string Servers
+		{
+			get
+			{
+				return this._Servers;
+			}
+			set
+			{
+				if ((this._Servers != value))
+				{
+					this.OnServersChanging(value);
+					this.SendPropertyChanging();
+					this._Servers = value;
+					this.SendPropertyChanged("Servers");
+					this.OnServersChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedByUserID", DbType="Int")]
+		public System.Nullable<int> CreatedByUserID
+		{
+			get
+			{
+				return this._CreatedByUserID;
+			}
+			set
+			{
+				if ((this._CreatedByUserID != value))
+				{
+					this.OnCreatedByUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedByUserID = value;
+					this.SendPropertyChanged("CreatedByUserID");
+					this.OnCreatedByUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedOnDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedOnDate
+		{
+			get
+			{
+				return this._CreatedOnDate;
+			}
+			set
+			{
+				if ((this._CreatedOnDate != value))
+				{
+					this.OnCreatedOnDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedOnDate = value;
+					this.SendPropertyChanged("CreatedOnDate");
+					this.OnCreatedOnDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastModifiedByUserID", DbType="Int")]
+		public System.Nullable<int> LastModifiedByUserID
+		{
+			get
+			{
+				return this._LastModifiedByUserID;
+			}
+			set
+			{
+				if ((this._LastModifiedByUserID != value))
+				{
+					this.OnLastModifiedByUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._LastModifiedByUserID = value;
+					this.SendPropertyChanged("LastModifiedByUserID");
+					this.OnLastModifiedByUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastModifiedOnDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastModifiedOnDate
+		{
+			get
+			{
+				return this._LastModifiedOnDate;
+			}
+			set
+			{
+				if ((this._LastModifiedOnDate != value))
+				{
+					this.OnLastModifiedOnDateChanging(value);
+					this.SendPropertyChanging();
+					this._LastModifiedOnDate = value;
+					this.SendPropertyChanged("LastModifiedOnDate");
+					this.OnLastModifiedOnDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FriendlyName", DbType="NVarChar(200)")]
+		public string FriendlyName
+		{
+			get
+			{
+				return this._FriendlyName;
+			}
+			set
+			{
+				if ((this._FriendlyName != value))
+				{
+					this.OnFriendlyNameChanging(value);
+					this.SendPropertyChanging();
+					this._FriendlyName = value;
+					this.SendPropertyChanged("FriendlyName");
+					this.OnFriendlyNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScheduleStartDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ScheduleStartDate
+		{
+			get
+			{
+				return this._ScheduleStartDate;
+			}
+			set
+			{
+				if ((this._ScheduleStartDate != value))
+				{
+					this.OnScheduleStartDateChanging(value);
+					this.SendPropertyChanging();
+					this._ScheduleStartDate = value;
+					this.SendPropertyChanged("ScheduleStartDate");
+					this.OnScheduleStartDateChanged();
 				}
 			}
 		}

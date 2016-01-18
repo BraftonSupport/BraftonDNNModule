@@ -13,6 +13,7 @@
                 <h1>Brafton DotNetNuke Module</h1>
             <asp:Button ID="Import" runat="server" AutoPostBack="true" ClientIDMode="Static" OnClick="Import_Click" Text="Import Content" ViewStateMode="Enabled" Visible="true" />
             <asp:Button ID="ShowGlobals" runat="server" AutoPostBack="true" ClientIDMode="Static" OnClick="show_globals" Text="Show Messages" ViewStateMode="Enabled" Visible="true" />
+            <asp:Button ID="EnableAuto" runat="server" AutoPostBack="true" ClientIDMode="Static" OnClick="EnableAutomaticImport" Text="Add To DNN Scheduler" ViewStateMode="Enabled" Visible="true" />
             <asp:UpdateProgress ID="UpdateProgress1" runat="server" DynamicLayout="false">
             <ProgressTemplate>
             <div id="updateBack">
@@ -22,7 +23,7 @@
             </asp:UpdateProgress>
                 <placeholder id="errorMessages" runat="server" visible="true">
                 <p class="IDs">
-                Checked Status:
+                Importer Status:
                 <asp:Literal ID="checkedStatusLabel" runat="server" />
                 <br />
                 Importer Messages:

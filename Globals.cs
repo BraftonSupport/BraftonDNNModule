@@ -18,33 +18,33 @@ namespace Brafton.Modules.Globals
     {
         //public const string Prefix = "ID_"; // cannot change
         public static string MyGlobalError = "Don't Panic"; // can change because not const
-        public static string ArtOrBlog = "unk";
-        public static int IncludeVideo = 0;
-        public static int IncludeUpdatedFeedContent = 0;
-        public static string VideoBaseURL = "livevideo.brafton.com";
-        public static string VideoPhotoURL = "pictures.brafton.com";
-        public static string VideoPublicKey = "xxxxxx";
-        public static string VideoSecretKey = "xxxxxx";
-        public static int? VideoFeedNumber = 0;
-        public static string VideoFeedText = "xxxxxx";
-        public static string api = "xxxxxx";
-        public static string baseUrl = "xxxxxx";
-        public static string DomainName = "xxxxxx";
+        //public static string ArtOrBlog = "unk";
+        //public static int IncludeVideo = 0;
+        //public static int IncludeUpdatedFeedContent = 0;
+        //public static string VideoBaseURL = "livevideo.brafton.com";
+        //public static string VideoPhotoURL = "pictures.brafton.com";
+        //public static string VideoPublicKey = "xxxxxx";
+        //public static string VideoSecretKey = "xxxxxx";
+        //public static int? VideoFeedNumber = 0;
+        //public static string VideoFeedText = "xxxxxx";
+        //public static string api = "xxxxxx";
+        //public static string baseUrl = "xxxxxx";
+        //public static string DomainName = "xxxxxx";
 
         //These are temp holders for values to entered into the db
-        public static string tempID = "0";
-        public static string tempTitle = "xxxxxx";
-        public static string tempExtract = "xxxxxx";
-        public static string tempcontent = "xxxxxx";
-        public static DateTime tempDate = DateTime.Today;
-        public static string tempPaths = "xxxxxx";
+        //public static string tempID = "0";
+        //public static string tempTitle = "xxxxxx";
+        //public static string tempExtract = "xxxxxx";
+        //public static string tempcontent = "xxxxxx";
+        //public static DateTime tempDate = DateTime.Today;
+        //public static string tempPaths = "xxxxxx";
 
-        public static string imageInfo = "xxxxxx";
-        public static string imageID = "xxx";
+        //public static string imageInfo = "xxxxxx";
+        //public static string imageID = "xxx";
 
-        public static string CompleteContent = "";
-        public static string CompleteExtract = "";
-        public static int brafID = 0;
+        //public static string CompleteContent = "";
+        //public static string CompleteExtract = "";
+        //public static int brafID = 0;
 
         //Variables used 
         public static int? CurrentBlog = 0;
@@ -70,49 +70,49 @@ namespace Brafton.Modules.Globals
 
                          if (pk != null)
                          {
-                             api = pk.Api != null ? pk.Api : api;
+                             //api = pk.Api != null ? pk.Api : api;
 
-                             baseUrl = pk.BaseUrl != null ? pk.BaseUrl : baseUrl;
+                             //baseUrl = pk.BaseUrl != null ? pk.BaseUrl : baseUrl;
 
-                             DomainName = pk.DomainName != null ? pk.DomainName : DomainName;
+                             //DomainName = pk.DomainName != null ? pk.DomainName : DomainName;
 
-                             VideoPublicKey = pk.VideoPublicKey != null ? pk.VideoPublicKey : VideoPublicKey;
+                             //VideoPublicKey = pk.VideoPublicKey != null ? pk.VideoPublicKey : VideoPublicKey;
 
-                             VideoSecretKey = pk.VideoSecretKey != null ? pk.VideoSecretKey : VideoSecretKey;
+                             //VideoSecretKey = pk.VideoSecretKey != null ? pk.VideoSecretKey : VideoSecretKey;
 
-                             VideoFeedNumber = pk.VideoFeedNumber != null ? pk.VideoFeedNumber : VideoFeedNumber;
+                             //VideoFeedNumber = pk.VideoFeedNumber != null ? pk.VideoFeedNumber : VideoFeedNumber;
 
-                             VideoFeedText = VideoFeedNumber.ToString();
+                             //VideoFeedText = VideoFeedNumber.ToString();
 
-                             VideoBaseURL = pk.VideoBaseUrl != null ? pk.VideoBaseUrl : VideoBaseURL;
+                             //VideoBaseURL = pk.VideoBaseUrl != null ? pk.VideoBaseUrl : VideoBaseURL;
 
-                             VideoPhotoURL = pk.VideoPhotoURL != null ? pk.VideoPhotoURL : VideoPhotoURL;
+                             //VideoPhotoURL = pk.VideoPhotoURL != null ? pk.VideoPhotoURL : VideoPhotoURL;
 
-                             CurrentBlog = pk.BlogId != null ? pk.BlogId : CurrentBlog;
+                             //CurrentBlog = pk.BlogId != null ? pk.BlogId : CurrentBlog;
 
-                             currentPortal = pk.PortalId != null ? pk.PortalId : currentPortal;
+                             //currentPortal = pk.PortalId != null ? pk.PortalId : currentPortal;
 
-                             TabID = pk.TabId != null ? pk.TabId : TabID;
+                             //TabID = pk.TabId != null ? pk.TabId : TabID;
 
-                             Author = pk.AuthorId != null ? pk.AuthorId : Author;
+                             //Author = pk.AuthorId != null ? pk.AuthorId : Author;
 
-                             //ArtOrBlog = (pk.Api != null && pk.VideoSecretKey != null) ? "both" : "articles";
+                             ////ArtOrBlog = (pk.Api != null && pk.VideoSecretKey != null) ? "both" : "articles";
 
-                             //Decide whether photo or video
-                             if (pk.VideoSecretKey != null)
-                             {
-                                 ArtOrBlog = "video";
-                             }
+                             ////Decide whether photo or video
+                             //if (pk.VideoSecretKey != null)
+                             //{
+                             //    ArtOrBlog = "video";
+                             //}
 
-                             if (pk.Api != null)
-                             {
-                                 ArtOrBlog = "articles";
-                             }
+                             //if (pk.Api != null)
+                             //{
+                             //    ArtOrBlog = "articles";
+                             //}
 
-                             if (pk.Api != null && pk.VideoSecretKey != null)
-                             {
-                                 ArtOrBlog = "both";
-                             }
+                             //if (pk.Api != null && pk.VideoSecretKey != null)
+                             //{
+                             //    ArtOrBlog = "both";
+                             //}
 
                          #endregion
                          }

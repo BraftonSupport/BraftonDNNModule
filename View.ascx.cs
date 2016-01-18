@@ -38,6 +38,7 @@ using Brafton.Modules.Globals;
 
 using System.Net;
 using Brafton.Modules.VideoImporter;
+using Brafton.Modules.BraftonImporter7_02_02.dbDataLayer;
 
 namespace BraftonView.Brafton_Importer_Clean
 {
@@ -112,7 +113,7 @@ namespace BraftonView.Brafton_Importer_Clean
             {
                 this.Page.Header.Controls.Add(new LiteralControl(atlantis));
             }
-            
+            CheckStatus();
             /* 
              * This will be added when using without the blog module in the version 7.1.0
             HtmlMeta meta = new HtmlMeta();
@@ -128,20 +129,69 @@ namespace BraftonView.Brafton_Importer_Clean
             MyGlobals.BraftonViewModuleId.Add(ModuleId);
             newSched.DoWork();          
             globalErrorMessage.Text = MyGlobals.MyGlobalError;
+            MyGlobals.MyGlobalError = "";
         }
 
         protected void show_globals(object sender, EventArgs e)
         {
-            globalErrorMessage.Text = MyGlobals.MyGlobalError + " imageInfo:" + MyGlobals.imageInfo;
+            CheckStatus();
+            globalErrorMessage.Text = MyGlobals.MyGlobalError;
             MyGlobals.MyGlobalError = "";
         }
-        protected void CheckStatus(object sender, EventArgs e)
+        protected void CheckStatus()
         {
             /* This will
              * this will check if all relevant data has been set
              * check for valid api key and domain set,
              * check for if video is enabled and public private and feedid are all set
              * */
+            checkedStatusLabel.Text = "All options have been set properly";
+        }
+        protected void EnableAutomaticImport(object sender, EventArgs e)
+        {
+            /*
+             * this will add the importer to the dnn scheduler
+             * */
+            using (DataClasses1DataContext dnncontext = new DataClasses1DataContext())
+            {
+                Schedule sc = dnncontext.Schedules.FirstOrDefault(x => x.FriendlyName == "BraftonImporter");
+                if (sc == null)
+                {
+                    MyGlobals.LogMessage("Creating schedule Entry", 1);
+                    Schedule newSchedule = new Schedule();
+                    newSchedule.TypeFullName = "Brafton.DotNetNuke.BraftonSchedule,BraftonImporter7_02_02";
+                    newSchedule.TimeLapse = 1;
+                    newSchedule.TimeLapseMeasurement = "h";
+                    newSchedule.RetryTimeLapse = 15;
+                    newSchedule.RetryTimeLapseMeasurement = "m";
+                    newSchedule.RetainHistoryNum = 0;
+                    newSchedule.CatchUpEnabled = false;
+                    newSchedule.Enabled = true;
+                    newSchedule.FriendlyName = "BraftonImporter";
+                    newSchedule.CreatedOnDate = DateTime.Now;
+                    newSchedule.ScheduleStartDate = DateTime.Now;
+                    newSchedule.AttachToEvent = "";
+                    newSchedule.ObjectDependencies = "";
+                    dnncontext.Schedules.InsertOnSubmit(newSchedule);
+                    dnncontext.SubmitChanges();
+                }
+                else
+                {
+                    if (Convert.ToBoolean(sc.Enabled))
+                    {
+                        sc.Enabled = false;
+                        MyGlobals.LogMessage("The Schedule has been disabled", 1);
+                    }
+                    else
+                    {
+                        sc.Enabled = true;
+                        MyGlobals.LogMessage("The Schedule has been enabled", 1);
+                    }
+                    dnncontext.SubmitChanges();
+                }
+                globalErrorMessage.Text = MyGlobals.MyGlobalError;
+                MyGlobals.MyGlobalError = "";
+            }
         }
         public void runBraftonImporter(object sender, EventArgs e)
         {

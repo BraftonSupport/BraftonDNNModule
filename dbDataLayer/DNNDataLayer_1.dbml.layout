@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.75, 10.75" name="DataClasses1">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.875, 10.75" name="DataClasses1">
   <DataContextMoniker Name="/DataClasses1DataContext" />
   <nestedChildShapes>
     <classShape Id="153b4953-9524-4c99-9bcb-0729ecbbacba" absoluteBounds="3, 0.5, 2, 3.5016097005208326">
@@ -14,7 +14,7 @@
         <elementListCompartment Id="af5db2e4-0b1b-48a5-8cf7-95a7d59f7432" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 2.25080485026042); (3 : 2.25080485026042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.5 : 2.25080485026042); (3 : 2.25080485026042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataClasses1DataContext/Blog_Blog/Blog_Blog_Blog_Post" />
       <nodes>
         <classShapeMoniker Id="daa47dc1-3b97-4de5-a970-37f47d129c89" />
@@ -99,7 +99,7 @@
         <elementListCompartment Id="71e148bb-ba43-4caf-834b-5dba3248ab91" absoluteBounds="0.51500000000000012, 8.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 8.59699625651042); (5.375 : 8.59699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.5 : 8.59699625651042); (4.19791916666667 : 8.59699625651042 : JumpStart); (4.36458583333333 : 8.59699625651042 : JumpEnd); (5.375 : 8.59699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClasses1DataContext/Taxonomy_VocabularyType/Taxonomy_VocabularyType_Taxonomy_Vocabulary" />
       <nodes>
         <classShapeMoniker Id="98c84306-8091-42c8-8b0b-9801f063a89d" />
@@ -129,6 +129,12 @@
       <DataClassMoniker Name="/DataClasses1DataContext/Brafton_table" />
       <nestedChildShapes>
         <elementListCompartment Id="fa9dbfd1-6222-4436-b0eb-42899be92f41" absoluteBounds="10.515, 2.71, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5550e5e0-820e-4911-b2e6-d6d85f176d1d" absoluteBounds="12.625, 0.5, 2, 4.2708154296875">
+      <DataClassMoniker Name="/DataClasses1DataContext/Schedule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1b34ab33-c3fe-4950-bb89-7ca4810b230a" absoluteBounds="12.64, 0.96, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

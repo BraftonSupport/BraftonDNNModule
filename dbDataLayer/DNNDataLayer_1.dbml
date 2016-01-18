@@ -182,4 +182,26 @@
       <Column Name="AuthorId" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Schedule" Member="Schedules">
+    <Type Name="Schedule">
+      <Column Name="ScheduleID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TypeFullName" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="TimeLapse" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TimeLapseMeasurement" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="RetryTimeLapse" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RetryTimeLapseMeasurement" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="RetainHistoryNum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AttachToEvent" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CatchUpEnabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Enabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ObjectDependencies" Type="System.String" DbType="VarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="Servers" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FriendlyName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="ScheduleStartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

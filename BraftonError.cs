@@ -16,6 +16,8 @@ namespace Brafton.BraftonError
         string DestURL;
         string key = "2cyx7uu9i6chk4pcjhglmmw3";
         public Hashtable Settings;
+        public static int Loop = 1;
+
         public ErrorReporting(Hashtable ModuleSettings)
         {
             Settings = ModuleSettings;
@@ -59,5 +61,18 @@ namespace Brafton.BraftonError
             return json;
         }
 
+        public static bool CheckErrors(string type)
+        {
+            bool value = true;
+            Dictionary<string, string> acceptable = new Dictionary<string, string>();
+            acceptable.Add("FormatException", "Format Issue most likely steming from an incorrect API, or Private Key");
+            if (acceptable.ContainsKey(type))
+            {
+                MyGlobals.LogMessage(acceptable[type]);
+                return false;
+            }
+
+            return value;
+        }
     }
 }
