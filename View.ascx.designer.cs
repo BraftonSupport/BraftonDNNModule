@@ -81,11 +81,15 @@ namespace BraftonView.Brafton_Importer_Clean
 
         protected global::System.Web.UI.WebControls.PlaceHolder VideoPlaceHolder;
 
+        protected global::System.Web.UI.WebControls.PlaceHolder UpdateAvailable;
+
         protected global::System.Web.UI.WebControls.Label labelError;
 
         public global::System.Web.UI.WebControls.Literal errorCheckingLabel;
 
         public global::System.Web.UI.WebControls.Literal globalErrorMessage;
+
+        public global::System.Web.UI.WebControls.Literal UpdateMessage;
 
         protected global::System.Web.UI.WebControls.TextBox VideoPublicKey;
 
@@ -109,9 +113,15 @@ namespace BraftonView.Brafton_Importer_Clean
 
         protected global::System.Web.UI.WebControls.Button updateVidSettings;
 
+        protected global::System.Web.UI.WebControls.Button EnableAuto;
+
         protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
 
         protected global::System.Web.UI.WebControls.Panel BraftonAdminPanel;
+
+        protected global::System.Web.UI.WebControls.Image StatusImage;
+
+        protected global::System.Web.UI.WebControls.Image MessageImage;
     }
 }
 

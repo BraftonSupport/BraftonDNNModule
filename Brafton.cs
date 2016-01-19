@@ -63,7 +63,7 @@ namespace Brafton.DotNetNuke
             : base()
         {
             ScheduleHistoryItem = objScheduleHistoryItem;
-            MyGlobals.MyGlobalError = MyGlobals.MyGlobalError + ScheduleHistoryItem.ScheduleSource;
+            MyGlobals.LogMessage(ScheduleHistoryItem.ScheduleSource.ToString(), 1);
             
         }
         
@@ -74,11 +74,11 @@ namespace Brafton.DotNetNuke
         {
             try
             {
-                
                 if (MyGlobals.BraftonViewModuleId.Count.ToString() == "0")
                 {
                     retrieveAllModules();
                 }
+                MyGlobals.LogMessage("Running " + MyGlobals.BraftonViewModuleId.Count.ToString() + " Importers", 1);
                 foreach(int NewBrafId in MyGlobals.BraftonViewModuleId){
                     BraftonModuleId = NewBrafId;
 
@@ -102,6 +102,7 @@ namespace Brafton.DotNetNuke
                         throw new Exception("can't run importer");
                     }
                 }
+                MyGlobals.BraftonViewModuleId.Clear();
                 ScheduleHistoryItem.Succeeded = true;
             }
             catch (Exception exc)
@@ -147,7 +148,6 @@ namespace Brafton.DotNetNuke
                     MyGlobals.BraftonViewModuleId.Add(modId.ModuleID);
                     moduleIds.Append(modId.ModuleID.ToString() + ": ");
                 }
-                MyGlobals.LogMessage("Module Ids from the query are : " + moduleIds.ToString());
             }
             
         }
@@ -325,6 +325,11 @@ namespace Brafton.DotNetNuke
             #region Article Loop
             foreach (newsItem ni in ac.News)
             {
+                if (l >= MyGlobals.Limit)
+                {
+                    string fake = string.Empty;
+                    return fake;
+                }
                 artBlogID = ni.id.ToString();
                 MyGlobals.LogMessage("Checking for article " + artBlogID);
 
@@ -457,7 +462,7 @@ namespace Brafton.DotNetNuke
                 ErrorReporting.Loop = 1;
                    ImportVideos();
              }
-            string returnVal = "include video";
+            string returnVal = "Importer Has completed";
             return returnVal;
         }
 
@@ -643,9 +648,8 @@ namespace Brafton.DotNetNuke
                         int photoID = photos.Get(imageID).SourcePhotoId;
                         string alttext = photos.Get(imageID).Fields["altText"];
                         string caption = photos.Get(imageID).Fields["caption"];
-                        //MyGlobals.imageID = imageID.ToString();
                         string photoURL = photoClient.Photos().GetScaleLocationUrl(photoID, "y", 500).LocationUri;
-                        MyGlobals.LogMessage("The image id is " + imageID + " the photoID is " + photoID + " the photo url is " + photoURL);
+                        //MyGlobals.LogMessage("The image id is " + imageID + " the photoID is " + photoID + " the photo url is " + photoURL);
                         GetImages retrieveImage2 = new GetImages(photoURL, entry, extract, appPath, caption, AddedContentItem.ContentItemID);
                         retrieveImage2.DownloadImageDebug();
                         imgName = retrieveImage2._imageName;
@@ -677,9 +681,6 @@ namespace Brafton.DotNetNuke
                     Blog_Post AddedBlogItem = be == null ? AddBlogItem(blogItem) : AddBlogItem(blogItem, brafId);
 
                     #region Categories
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    //Add categories to Blog_Entry_Categories table 
-                    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     List<string> CategoryNames = new List<string>();
                     foreach (AdferoVideoDotNet.AdferoArticles.Categories.AdferoCategoryListItem cats in client.Categories().ListForArticle(brafId, 0, 20).Items)
                     {
@@ -695,10 +696,8 @@ namespace Brafton.DotNetNuke
                 }
                 limit++;
                 ErrorReporting.Loop++;
+            }
+            #endregion Video Import
         }
-        #endregion Video Import
-
-
-    }
     }
 }

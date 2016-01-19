@@ -102,8 +102,8 @@ namespace Brafton.Modules.BraftonImporter7_02_02
             RadioButtonList1.Text = Settings.Contains("RadioButtonList1") ? Settings["RadioButtonList1"].ToString() : "";
             BrandUrl.SelectedValue = Settings.Contains("BrandUrl") ? Settings["BrandUrl"].ToString() : "brafton.com";
             APIKey.Text = Settings.Contains("APIKey") ? Settings["APIKey"].ToString() : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-            VideoPublic.Text = Settings.Contains("VideoPublic") ? Settings["VideoPublic"].ToString() : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-            VideoPrivate.Text = Settings.Contains("VideoPrivate") ? Settings["VideoPrivate"].ToString() : "xxxxxxx";
+            VideoPublic.Text = Settings.Contains("VideoPublic") ? Settings["VideoPublic"].ToString() : "xxxxxxx";
+            VideoPrivate.Text = Settings.Contains("VideoPrivate") ? Settings["VideoPrivate"].ToString() : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
             VideoFeedId.Text = Settings.Contains("VideoFeedId") ? Settings["VideoFeedId"].ToString() : "0";
             UpdateContent.SelectedValue = Settings.Contains("UpdateContent") ? Settings["UpdateContent"].ToString() : "0";
             DebugMode.SelectedValue = Settings.Contains("DebugMode") ? Settings["DebugMode"].ToString() : "0";

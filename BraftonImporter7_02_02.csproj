@@ -252,13 +252,14 @@
     <Content Include="App_Data\Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
-    <Content Include="Documentation\Documentation.css" />
-    <Content Include="Documentation\Documentation.html" />
     <Content Include="Images\BR.png" />
+    <Content Include="Images\error.png" />
     <Content Include="Images\loader-1.gif" />
     <Content Include="Images\loader-2.gif" />
     <Content Include="Images\loader-3.gif" />
     <Content Include="Images\loader.gif" />
+    <Content Include="Images\pass.png" />
+    <Content Include="Images\warning.png" />
     <Content Include="License.txt" />
     <Content Include="module.css" />
     <Content Include="ReleaseNotes.txt" />

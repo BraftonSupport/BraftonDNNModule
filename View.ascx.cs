@@ -39,7 +39,7 @@ using Brafton.Modules.Globals;
 using System.Net;
 using Brafton.Modules.VideoImporter;
 using Brafton.Modules.BraftonImporter7_02_02.dbDataLayer;
-
+using System.Web.Script.Serialization;
 namespace BraftonView.Brafton_Importer_Clean
 {
     [SecurityCritical]
@@ -52,24 +52,8 @@ namespace BraftonView.Brafton_Importer_Clean
         public SqlCommand cmd = new SqlCommand();
         public SqlCommand cmd2 = new SqlCommand();
 
-        //Application path variable
-        //public string appPath;
         public Boolean isEditable;
 
-        //Local Variables
-        //public int checkBlogModule;
-        //public int checkFriendURLS;
-        //public int checkAuthor;
-        //public int checkBlogCreated;
-        //public int checkNewsAPI;
-        //public int checkBaseUrl;
-        //public int checkLimit;
-        //public int checkBlogID;
-        //public int checkVidID;
-        //public Dictionary<string, int> checkAll = new Dictionary<string, int>();
-
-        ////Global Variables
-        //public int IncludeUpdatedFeedContent;
         public Boolean braftonViewable()
         {
             /*
@@ -86,15 +70,17 @@ namespace BraftonView.Brafton_Importer_Clean
             
         }
         protected void Page_Load(object sender, EventArgs e)
-        {
-            //runBraftonImporter();
+        {          
             /*
              * TO DO: 
              * Need to create a check if video article somehow, and determine if we should add the atlantis scripts to the head.
              * */
+            
             ModuleConfiguration.ModuleTitle = "";
             if (braftonViewable())
             {
+                CheckUpdate();
+                CheckStatus();
                 BraftonAdminPanel.Visible = true;
             }
             HtmlLink css = new HtmlLink();
@@ -113,7 +99,7 @@ namespace BraftonView.Brafton_Importer_Clean
             {
                 this.Page.Header.Controls.Add(new LiteralControl(atlantis));
             }
-            CheckStatus();
+            
             /* 
              * This will be added when using without the blog module in the version 7.1.0
             HtmlMeta meta = new HtmlMeta();
@@ -121,7 +107,18 @@ namespace BraftonView.Brafton_Importer_Clean
             meta.Content = "my brafton";
             this.Page.Header.Controls.Add(meta);
              * */
-
+            MessageImageVisible();
+        }
+        protected void MessageImageVisible()
+        {
+            if (!string.IsNullOrWhiteSpace(globalErrorMessage.Text))
+            {
+                MessageImage.Visible = true;
+            }
+            else
+            {
+                MessageImage.Visible = false;
+            }
         }
         protected void Import_Click(object sender, EventArgs e)
         {
@@ -129,6 +126,7 @@ namespace BraftonView.Brafton_Importer_Clean
             MyGlobals.BraftonViewModuleId.Add(ModuleId);
             newSched.DoWork();          
             globalErrorMessage.Text = MyGlobals.MyGlobalError;
+            MessageImageVisible();
             MyGlobals.MyGlobalError = "";
         }
 
@@ -136,16 +134,91 @@ namespace BraftonView.Brafton_Importer_Clean
         {
             CheckStatus();
             globalErrorMessage.Text = MyGlobals.MyGlobalError;
+            MessageImageVisible();
             MyGlobals.MyGlobalError = "";
         }
         protected void CheckStatus()
         {
-            /* This will
-             * this will check if all relevant data has been set
-             * check for valid api key and domain set,
-             * check for if video is enabled and public private and feedid are all set
-             * */
-            checkedStatusLabel.Text = "All options have been set properly";
+            using (DataClasses1DataContext dnncontext = new DataClasses1DataContext())
+            {
+                Schedule sc = dnncontext.Schedules.FirstOrDefault(x => x.FriendlyName == "BraftonImporter");
+                if (sc == null){}
+                else
+                {
+                    if (Convert.ToBoolean(sc.Enabled))
+                    {
+                        EnableAuto.Text = "Disable Automatic Import";
+                    }
+                    else
+                    {
+                        EnableAuto.Text = "Enable Automatic Import";
+                    }
+                   
+                }
+            }
+            string msg = "<ul>";
+            bool status = true;
+            if (Settings.Contains("RadioButtonList1"))
+            {
+                string type = Settings["RadioButtonList1"].ToString();
+                if (Settings.Contains("APIKey") && (type == "articles" || type == "both") )
+                {
+                    string key = Settings["APIKey"].ToString();
+                    Guid key_result;
+                    bool valid = Guid.TryParse(key, out key_result);
+                    status = status ? valid : status;
+                    if (!status)
+                    {
+                        msg = msg + "<li>APIKey is either not set or is invalid</li>";
+                    }
+                }
+                else if(type == "articles" || type == "both")
+                {
+                    msg = msg + "<li>You have not set your API Key</li>";
+                    status = false;
+                }
+                if ((Settings.Contains("VideoPublic") || Settings.Contains("VideoPrivate")) && (type == "video" || type == "both"))
+                {
+                    string publicKey = Settings["VideoPublic"].ToString();
+                    string privateKey = Settings["VideoPrivate"].ToString();
+                    Guid private_result;
+                    bool private_valid = Guid.TryParse(privateKey, out private_result);
+                    status = status ? private_valid : status;
+                    bool public_valid = !string.IsNullOrWhiteSpace(publicKey);
+                    status = status ? public_valid : status;
+                    if (!public_valid || !private_valid)
+                    {
+                        msg = msg + "<li>Check your Public and Private Keys to ensure they are valid</li>";
+                    }
+                }
+                else if (type == "video" || type == "both")
+                {
+                    msg = msg + "<li>You have not set your Video Public and/or Private Keys</li>";
+                    status = false;
+                }
+                if (!Settings.Contains("blogIdDrpDwn"))
+                {
+                    msg = msg + "<li>You have not selected a Blog to import your content into</li>";
+                    status = false;
+                }
+                msg = msg + "</ul>";
+                if (status)
+                {
+                    msg = string.Empty;
+                }
+                else
+                {
+                    StatusImage.ImageUrl = "~/desktopmodules/Braftonimporter7_02_02/Images/error.png";
+                }
+            }
+            else
+            {
+                status = false;
+                msg = "<li>No options have been saved for this module</li>";
+            }
+            checkedStatusLabel.Text = msg;
+            Import.Enabled = status;
+            EnableAuto.Enabled = status;
         }
         protected void EnableAutomaticImport(object sender, EventArgs e)
         {
@@ -157,7 +230,7 @@ namespace BraftonView.Brafton_Importer_Clean
                 Schedule sc = dnncontext.Schedules.FirstOrDefault(x => x.FriendlyName == "BraftonImporter");
                 if (sc == null)
                 {
-                    MyGlobals.LogMessage("Creating schedule Entry", 1);
+                    
                     Schedule newSchedule = new Schedule();
                     newSchedule.TypeFullName = "Brafton.DotNetNuke.BraftonSchedule,BraftonImporter7_02_02";
                     newSchedule.TimeLapse = 1;
@@ -174,6 +247,8 @@ namespace BraftonView.Brafton_Importer_Clean
                     newSchedule.ObjectDependencies = "";
                     dnncontext.Schedules.InsertOnSubmit(newSchedule);
                     dnncontext.SubmitChanges();
+                    MyGlobals.LogMessage("Created scheduler Entry for Brafton Importer", 1);
+                    EnableAuto.Text = "Turn Off Automatic Import";
                 }
                 else
                 {
@@ -181,15 +256,18 @@ namespace BraftonView.Brafton_Importer_Clean
                     {
                         sc.Enabled = false;
                         MyGlobals.LogMessage("The Schedule has been disabled", 1);
+                        EnableAuto.Text = "Turn On Automatic Import";
                     }
                     else
                     {
                         sc.Enabled = true;
                         MyGlobals.LogMessage("The Schedule has been enabled", 1);
+                        EnableAuto.Text = "Turn Off Automatic Import";
                     }
                     dnncontext.SubmitChanges();
                 }
                 globalErrorMessage.Text = MyGlobals.MyGlobalError;
+                MessageImageVisible();
                 MyGlobals.MyGlobalError = "";
             }
         }
@@ -211,6 +289,36 @@ namespace BraftonView.Brafton_Importer_Clean
                 
             }
 
+        }
+        protected void CheckUpdate()
+        {
+            string msg = string.Empty;
+            DesktopModuleInfo braftonModule = DesktopModuleController.GetDesktopModuleByFriendlyName("Brafton Content Importer");
+            string SystemVersion = braftonModule.Version.ToString();
+            Version currentVersion = new Version(SystemVersion);
+
+            string url = "http://development.updater.brafton.com/u/dotnetnuke/update";
+            HttpWebRequest report = (HttpWebRequest)WebRequest.Create(url);
+
+            HttpWebResponse response = (HttpWebResponse)report.GetResponse();
+            Stream stream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(stream);
+            var result = reader.ReadToEnd();
+            var json = new JavaScriptSerializer();
+            //Dictionary<string, string> updaterResponse = new Dictionary<string, string>();
+            var jsonData = json.Deserialize<Dictionary<string, string>>(result.ToString());
+            
+            string updatedVersion = jsonData["new_version"].ToString();
+            
+            Version remoteVerion = new Version(updatedVersion);
+            int compare_result = currentVersion.CompareTo(remoteVerion);
+            if (compare_result < 0)
+            {
+                UpdateAvailable.Visible = true;
+                msg = "There is an update available for your Importer.<br/>  You are currently running V" + SystemVersion + ", However V" + updatedVersion + " is available.<br/>You can Download the updated version <a href='" + jsonData["download_link"].ToString() + "'>HERE</a>";
+            }
+            UpdateMessage.Text = msg;
+            
         }
     }
 }
