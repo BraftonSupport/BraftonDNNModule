@@ -14,14 +14,14 @@ namespace Brafton.BraftonError
     public class ErrorReporting
     {
         string DestURL;
-        string key = "2cyx7uu9i6chk4pcjhglmmw3";
+        string key = "311rg6nunsim4rjjstsu5p3a";
         public Hashtable Settings;
         public static int Loop = 1;
 
         public ErrorReporting(Hashtable ModuleSettings)
         {
             Settings = ModuleSettings;
-            DestURL = "http://development.updater.brafton.com/errorlog/dotnetnuke/error/" + key;
+            DestURL = "http://updater.brafton.com/errorlog/dotnetnuke/error/" + key;
         }
         public void RemotePost(string error)
         {

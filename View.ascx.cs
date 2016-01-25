@@ -297,7 +297,7 @@ namespace BraftonView.Brafton_Importer_Clean
             string SystemVersion = braftonModule.Version.ToString();
             Version currentVersion = new Version(SystemVersion);
 
-            string url = "http://development.updater.brafton.com/u/dotnetnuke/update";
+            string url = "http://updater.brafton.com/u/dotnetnuke/update";
             HttpWebRequest report = (HttpWebRequest)WebRequest.Create(url);
 
             HttpWebResponse response = (HttpWebResponse)report.GetResponse();

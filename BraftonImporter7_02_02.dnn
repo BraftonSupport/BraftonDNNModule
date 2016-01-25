@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="BraftonImporter7_02_02" type="Module" version="01.02.01">
+    <package name="BraftonImporter7_02_02" type="Module" version="01.03.01">
       <friendlyName>Brafton Content Importer</friendlyName>
       <description>DNN Importer for Brafton/Brafton SMB/Castleford content.  Requires the DNN Blog Module for implimentation importing each article as a new blog post.</description>
       <iconFile>Images/BR.png</iconFile>
@@ -8,13 +8,13 @@
         <name>Brafton.com</name>
         <organization>Brafton.com</organization>
         <url>http://www.Brafton.com</url>
-        <email>deryk.king@brafton.com</email>
+        <email>techsupport@brafton.com</email>
       </owner>
       <license src="License.txt"></license>
       <releaseNotes src="ReleaseNotes.txt"></releaseNotes>
       <azureCompatible>true</azureCompatible>
       <dependencies>
-        <dependency type="CoreVersion">07.04.01</dependency>
+        <dependency type="CoreVersion">07.02.01</dependency>
         <dependency type="package">DotNetNuke.Blog</dependency>
       </dependencies>
 
@@ -30,12 +30,12 @@
             <script type="Install">
               <path>Providers\DataProviders\SqlDataProvider</path>
               <name>00.00.02.SqlDataProvider</name>
-              <version>00.01.05</version>
+              <version>01.03.01</version>
             </script>
             <script type="UnInstall">
               <path>Providers\DataProviders\SqlDataProvider</path>
               <name>Uninstall.SqlDataProvider</name>
-              <version>00.01.05</version>
+              <version>01.03.01</version>
             </script>
           </scripts>
         </component>

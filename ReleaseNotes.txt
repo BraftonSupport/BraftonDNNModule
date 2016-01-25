@@ -2,13 +2,13 @@
 <p class="Contributor">
 	Brafton.com <br />
 	<a href="mailto:techsupport@brafton.com">deryk.king@brafton.com</a><br />
-	<a href="http://www.brafton.com/support">http://www.brafton.com</a><br />
+	<a href="http://www.brafton.com/support">http://www.brafton.com/support</a><br />
 </p>
 <hr/>
 <div class="License">
-	<h3>About the BraftonImporterv7x</h3>
+	<h3>About the BraftonImporter</h3>
 	<p class="Owner">
-		<b>Version 7.0.5</b><br /><br />
+		<b>Version 01.03.01 BETA</b><br /><br />
 	</p>
 	<p>Description about version.</p>
 	
