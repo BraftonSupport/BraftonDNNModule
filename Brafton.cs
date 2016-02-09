@@ -139,14 +139,17 @@ namespace Brafton.DotNetNuke
 
         private void retrieveAllModules()
         {
-            string target = "BraftonImporter7_02_02";
+            string target = "Brafton Content Importer";
             using (DataClasses1DataContext dnncontext = new DataClasses1DataContext())
             {
                 var moduleList = dnncontext.ContentItems.Where(x => x.Content.Contains(target));
                 StringBuilder moduleIds = new StringBuilder();
                 foreach(var modId in moduleList){
-                    MyGlobals.BraftonViewModuleId.Add(modId.ModuleID);
-                    moduleIds.Append(modId.ModuleID.ToString() + ": ");
+                    if (modId.ModuleID.ToString() != "-1")
+                    {
+                        MyGlobals.BraftonViewModuleId.Add(modId.ModuleID);
+                        moduleIds.Append(modId.ModuleID.ToString() + ": ");
+                    }
                 }
             }
             
@@ -439,7 +442,7 @@ namespace Brafton.DotNetNuke
                     blogItem.Add("DisplayCopyright", displayCopyright);
                     blogItem.Add("BraftonID", artBlogID);
                     blogItem.Add("Image", imgName);
-                    blogItem.Add("LastUpdatedOn", today);
+                    //blogItem.Add("LastUpdatedOn", today);
                     Blog_Post AddedBlogItem = be == null? AddBlogItem(blogItem) : AddBlogItem(blogItem, Int32.Parse(artBlogID));
                     //Categories
                     string catUrlHolder = ni.CategoriesHref;
@@ -677,7 +680,7 @@ namespace Brafton.DotNetNuke
                     blogItem.Add("DisplayCopyright", false);
                     blogItem.Add("BraftonID", brafId.ToString());
                     blogItem.Add("Image", imgName);
-                    blogItem.Add("LastUpdatedOn", today);
+                    //blogItem.Add("LastUpdatedOn", today);
                     Blog_Post AddedBlogItem = be == null ? AddBlogItem(blogItem) : AddBlogItem(blogItem, brafId);
 
                     #region Categories

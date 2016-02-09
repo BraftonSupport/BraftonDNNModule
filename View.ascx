@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeFile="View.ascx.cs" Inherits="BraftonView.Brafton_Importer_Clean.DesktopModules_Brafton_View2" %>
+<%@ Control Language="C#" AutoEventWireup="true" Codebehind="View.ascx.cs" Inherits="BraftonView.Brafton_Importer_Clean.DesktopModules_Brafton_View2" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 <%@ Register TagPrefix="brafton" Namespace="Brafton.Modules.Globals" Assembly="BraftonImporter7_02_02" %>
 <script runat="server">
@@ -39,7 +39,6 @@
         </asp:UpdatePanel>
     </div>
 </asp:Panel>
-<asp:Label ID="Label1" runat="server" Visible="false" OnLoad="runBraftonImporter" />
 
 
 

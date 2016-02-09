@@ -61,10 +61,51 @@ namespace Brafton.Modules.VideoImporter
                 string link = TabSettings.Contains("VideoPauseLink") ? TabSettings["VideoPauseLink"].ToString() : string.Empty;
                 string asset = TabSettings.Contains("VideoPauseAssetID") && !string.IsNullOrWhiteSpace(TabSettings["VideoPauseAssetID"].ToString()) ? "assetGateway: { id: '" + TabSettings["VideoPauseAssetID"].ToString() + " }," : string.Empty;
                 fullCta = ",pauseCallToAction: { " + asset + " link: '" + link + "',text: '" + text + "' }";
+
+                string VideoEndtitle = TabSettings.Contains("VideoEndTitle") ? TabSettings["VideoEndTitle"].ToString() : "";
+                string VideoEndSubtitle = TabSettings.Contains("VideoEndSubtitle") ? TabSettings["VideoEndSubtitle"].ToString() : "";
+                string VideoEndButtonText = TabSettings.Contains("VideoEndButtonText") ? TabSettings["VideoEndButtonText"].ToString() : "";
+                string VideoEndButtonLink = TabSettings.Contains("VideoEndButtonLink") ? TabSettings["VideoEndButtonLink"].ToString() : "";
+                string VideoEndButtonAssetID = TabSettings.Contains("VideoEndButtonAssetID") ? TabSettings["VideoEndButtonAssetID"].ToString() : "";
+
+                string endingCta = "";
+                if (!string.IsNullOrWhiteSpace(VideoEndtitle) || !string.IsNullOrWhiteSpace(VideoEndSubtitle) || !string.IsNullOrWhiteSpace(VideoEndButtonText) )
+                {
+                    endingCta = ",endOfVideoOptions: {" + Environment.NewLine;
+                    if (!string.IsNullOrWhiteSpace(VideoEndButtonAssetID))
+                    {
+                        endingCta = endingCta + "assetGateway: { " + Environment.NewLine + " id: '" + VideoEndButtonAssetID + "' }, " + Environment.NewLine;
+                    }
+                    endingCta = endingCta + "callToAction: { " + Environment.NewLine;
+                    if (!string.IsNullOrWhiteSpace(VideoEndtitle))
+                    {
+                        endingCta = endingCta + "title: '" + VideoEndtitle + "'," + Environment.NewLine;
+                    }
+                    if (!string.IsNullOrWhiteSpace(VideoEndSubtitle))
+                    {
+                        endingCta = endingCta + "subtitle: '" + VideoEndSubtitle + "'," + Environment.NewLine;
+                    }
+                    if (!string.IsNullOrWhiteSpace(VideoEndButtonText))
+                    {
+                        endingCta = endingCta + "button: { " + Environment.NewLine + "link: '" + VideoEndButtonLink + "', text: '" + VideoEndButtonText + "' } " + Environment.NewLine;
+                    }
+                    //ending callToAction
+                    endingCta = endingCta + " } " + Environment.NewLine;
+
+                    //close endofvideooptions
+                    endingCta = endingCta + " } ";
+                }
+                if (!string.IsNullOrWhiteSpace(endingCta))
+                {
+                    fullCta = fullCta + endingCta;
+                }
             }
+
             string id = ArticleId.ToString();
             string pieces = id + "'" + fullCta;
-            string cta = "<script>var atlantisvideo = AtlantisJS.Init({videos: [" + Environment.NewLine + "{id: 'video-" + id + "'}" + Environment.NewLine + "] });</script>";
+            
+            string cta = "<script>$(function(){ AtlantisJS.Init({videos: [" + Environment.NewLine + "{id: 'video-" + pieces + Environment.NewLine +" }" + Environment.NewLine + "] }); } );</script>";
+            
             return cta;
         }
 

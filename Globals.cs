@@ -22,7 +22,7 @@ namespace Brafton.Modules.Globals
         //Variables used 
         public static int? CurrentBlog = 0;
         public static int? currentPortal = 0;
-        public static int Limit = 3;
+        public static int Limit = 30;
         public static int? TabID = 0;
         public static int? Author = 1;
         public static List<int> BraftonViewModuleId = new List<int>();

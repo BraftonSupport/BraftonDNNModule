@@ -201,6 +201,14 @@ namespace BraftonView.Brafton_Importer_Clean
                     msg = msg + "<li>You have not selected a Blog to import your content into</li>";
                     status = false;
                 }
+                connection.Open();
+                cmd.Connection = connection;
+                cmd.CommandText = "IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='Blog_Posts' AND column_name='BraftonID') BEGIN ALTER TABLE Blog_Posts ADD BraftonID nvarchar(255) END";
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = "IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='Blog_Posts' AND column_name='LastUpdatedOn') BEGIN ALTER TABLE Blog_Posts ADD LastUpdatedOn DATETIME NULL END";
+                cmd.ExecuteNonQuery();
+                connection.Close();
+                cmd.Dispose();
                 msg = msg + "</ul>";
                 if (status)
                 {
@@ -215,6 +223,7 @@ namespace BraftonView.Brafton_Importer_Clean
             {
                 status = false;
                 msg = "<li>No options have been saved for this module</li>";
+                StatusImage.ImageUrl = "~/desktopmodules/Braftonimporter7_02_02/Images/error.png";
             }
             checkedStatusLabel.Text = msg;
             Import.Enabled = status;
@@ -270,25 +279,6 @@ namespace BraftonView.Brafton_Importer_Clean
                 MessageImageVisible();
                 MyGlobals.MyGlobalError = "";
             }
-        }
-        public void runBraftonImporter(object sender, EventArgs e)
-        {
-            DateTime nx = new DateTime(1970, 1, 1);
-            TimeSpan ts = DateTime.UtcNow - nx;
-            string timestamp = ((int)ts.TotalSeconds).ToString();
-
-            int LastImport = Settings.Contains("LastImport") ? Int32.Parse(Settings["LastImport"].ToString()) : 0;
-            int diff = Int32.Parse(timestamp) - LastImport;
-            if (diff > 10800)
-            {
-                Brafton.DotNetNuke.BraftonSchedule newSched = new Brafton.DotNetNuke.BraftonSchedule();
-                MyGlobals.BraftonViewModuleId.Add(ModuleId);
-                var modules = new ModuleController();
-                modules.UpdateModuleSetting(ModuleId, "LastImport", timestamp);
-                newSched.DoWork();
-                
-            }
-
         }
         protected void CheckUpdate()
         {

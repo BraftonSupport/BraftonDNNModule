@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="BraftonImporter7_02_02" type="Module" version="01.03.01">
+    <package name="BraftonImporter7_02_02" type="Module" version="03.01.01">
       <friendlyName>Brafton Content Importer</friendlyName>
       <description>DNN Importer for Brafton/Brafton SMB/Castleford content.  Requires the DNN Blog Module for implimentation importing each article as a new blog post.</description>
       <iconFile>Images/BR.png</iconFile>
