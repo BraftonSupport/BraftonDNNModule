@@ -84,12 +84,12 @@ namespace BraftonView.Brafton_Importer_Clean
                 BraftonAdminPanel.Visible = true;
             }
             HtmlLink css = new HtmlLink();
-            css.Href = "http://atlantisjs.brafton.com/v1/atlantisjsv1.4.css";
+            css.Href = "https://atlantisjs.brafton.com/v1/atlantisjsv1.4.css";
             css.Attributes.Add("rel", "stylesheet");
             css.Attributes.Add("type", "text/css");
             this.Page.Header.Controls.Add(css);
             string jquery = "<script>!window.jQuery && document.write(unescape('%3Cscript src=\"//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js\"%3E%3C/script%3E'))</script>";
-            string atlantis = "<script src='http://atlantisjs.brafton.com/v1/atlantis.min.v1.3.js' type='text/javascript'></script>";
+            string atlantis = "<script src='https://atlantisjs.brafton.com/v1/atlantis.min.v1.3.js' type='text/javascript'></script>";
             //do a check if jquery is turned on 
             if (Settings.Contains("IncludejQuery") && Settings["IncludeAtlantis"].ToString() == "1")
             {

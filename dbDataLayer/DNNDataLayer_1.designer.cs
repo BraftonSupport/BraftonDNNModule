@@ -20,9 +20,9 @@ namespace Brafton.Modules.BraftonImporter7_02_02.dbDataLayer
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-
-
-    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name = "DNN_DB")]
+	
+	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Database")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -68,8 +68,8 @@ namespace Brafton.Modules.BraftonImporter7_02_02.dbDataLayer
     partial void DeleteSchedule(Schedule instance);
     #endregion
 		
-		public DataClasses1DataContext() :
-        base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SiteSqlServer"].ConnectionString, mappingSource)
+		public DataClasses1DataContext() : 
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

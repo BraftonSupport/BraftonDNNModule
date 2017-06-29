@@ -11,3 +11,11 @@ C:\websites\deryk_dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\Brafton.
 C:\websites\deryk_dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.csproj.GenerateResource.Cache
 C:\websites\deryk_dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.dll
 C:\websites\deryk_dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.pdb
+C:\inetpub\wwwroot\dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.csprojResolveAssemblyReference.cache
+C:\inetpub\wwwroot\dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\Brafton.Modules.BraftonImporter7_02_02.Properties.Resources.resources
+C:\inetpub\wwwroot\dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.csproj.GenerateResource.Cache
+C:\inetpub\wwwroot\dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.dll
+C:\inetpub\wwwroot\dnn\DesktopModules\BraftonImporter7_02_02\obj\Release\BraftonImporter7_02_02.pdb
+C:\inetpub\wwwroot\dnn\bin\BraftonImporter7_02_02.dll.config
+C:\inetpub\wwwroot\dnn\bin\BraftonImporter7_02_02.dll
+C:\inetpub\wwwroot\dnn\bin\BraftonImporter7_02_02.pdb
