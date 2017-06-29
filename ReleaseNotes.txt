@@ -8,13 +8,13 @@
 <div class="License">
 	<h3>About the BraftonImporter</h3>
 	<p class="Owner">
-		<b>Version 03.01.01 BETA</b><br /><br />
+		<b>Version 03.01.02</b><br /><br />
 	</p>
 	<p>Description about version.</p>
 	
 	<h4>Tested Versions</h4>
 	<ul>
-			<li>7.02 - 7.04</li>
+			<li>7.02 - 8.x</li>
 	</ul>
 	
 </div>
