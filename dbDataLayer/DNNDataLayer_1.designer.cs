@@ -22,7 +22,7 @@ namespace Brafton.Modules.BraftonImporter7_02_02.dbDataLayer
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Database")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DNN_DB")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -69,7 +69,7 @@ namespace Brafton.Modules.BraftonImporter7_02_02.dbDataLayer
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["DatabaseConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SiteSqlServer"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
